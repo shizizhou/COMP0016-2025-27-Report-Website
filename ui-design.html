@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Design - Team 27</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="requirements.html">Requirements</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="ui-design.html">UI Design</a></li>
+                <li class="dropdown">
+                    <a href="#">System Design</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                        <li><a href="system-design-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Implementation</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                        <li><a href="implementation-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="testing.html">Testing</a></li>
+                <li><a href="evaluation.html">Evaluation</a></li>
+                <li class="dropdown">
+                    <a href="#">Appendices ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                        <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                        <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                        <li><a href="monthly-videos.html">Monthly Videos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section id="ui-design">
+            <h2>User Interface Design</h2>
+
+            <p>For our project, we had to design a UI for our Phase 1 project. This involved us creating sketches as well a Figma prototype to help us understand the main GUI elements.</p>
+
+            <h3>Design Principles</h3>
+            <ul>
+                <li><strong>Simplicity:</strong> The UI is clean and minimal to enhance user focus. We avoided overcomplicating the UI by adding too many things that the client weren't specifically keen on. Focussing instead on the most important aspects and making sure they are clean and simple to use.</li>
+                <li><strong>Consistency:</strong> We used standardised fonts, colors, and layouts throughout, giving the entire GUI a complete feel as one project. </li>
+                <li><strong>Visibility:</strong> All the main areas and frames of the GUI are clearly labelled to avoid any confusion. We've also highlighted the important elements to be clearly highlighted throughout the GUI. For example, the conversation history displays different text colours for both the user and the AI response, helping the user to be able to clearly distinguish between the two. </li>
+                <li><strong>Feedback:</strong> To provide effective user feedback, we ensured that users receive updated GUI and confirmations. This might include success or error messages dependent on what the user did and how they performed the correct action. It also explains any extra steps the user may need to take if necessary, making the UI very usable.</li>
+                <li><strong>Tolerance:</strong> Confirmation options to ensure users don't make mistakes. For example, confirmation message asking if the user is sure to delete the database. As without this, a misclick could cost the user hours of work which would lead to lots of frustration which we wanted to avoid.</li>
+            </ul>
+
+            <h3>Hand-Drawn Sketches</h3>
+            <p>We proceeded to draw some sketches of our initial ideas, based on the user and client requirements we gathered from both our research and meetings with our project partners at GDIHUB. Our project partners at GDIHUB were fairly pleased with this inital sketch, so we decided to not deviate too far away from this. Below is the initial sketch outlining the UI layout.</p>
+            <div class="sketches">
+                <img src="images/sketch.png" alt="Main UI Sketch">
+            </div>
+            <div class="sketches">
+                <img src="images/Failed UI.png" alt="Main UI Sketch">
+            </div>
+            <h3>After comparing these 2 in terms of user-friendly aspects and ease of operation, The first sketch wins and is developed accordingly. </h3>
+
+            <h3>Interactive Wireframe</h3>
+
+            <p>After reviewing our sketches with our GDIHUB project partners, we decided to implement an interactive prototype using Figma. Below is an image showcasing the flow of our Figma prototype:</p>
+            <div class="wireframe-flow">
+                <img src="images/figma.png" alt="Figma Prototype Flow">
+            </div>
+
+
+
+
+            <p>Click the link below to view our high-fidelity wireframe in Figma. We created a simple prototype outlining the key features. For example, in the first frame, you can send the already typed-in input text. Then try, and browse files. This will open up the file dialog system, which is relevant to the user's OS. Then, try and delete the database as shown in the flow above.</p>
+            <a href="https://www.figma.com/proto/0nceWTJAZAolvjh6qiWV10/Untitled?node-id=1-3219&p=f&t=dKgcqygiAbWaOKCe-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A3219" target="_blank" class="button">View Wireframe</a>
+            
+            <h3>Iteration during design</h3>
+            <p>After creating the initial wireframe, we decided to make some changes to the UI to make it adapts to needs of the could have requirements: do not include and filter and sort options.</p>
+            <div class="wireframe-flow">
+                <img src="images/image_interation.png" alt="Figma Prototype Flow">
+            </div>
+
+            <h3>Final UI</h3>
+            <p>Our final UI looks fairly similar to the initial ideas. Few changes were required but the main ones were the addition of filter and sort features directly below, as well as the addition of extra buttons to the action menu to accomodate certain extra features that we decided to add to enhance the ease of use of the project. Such as, separate buttons to select a folder or an individual file, option to export the text history and the option to delete the database contents. Here is what our final UI looked like:</p>
+            
+            <div class="final-ui">
+                <img src="images/phase1ui.png" alt="Final UI">
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

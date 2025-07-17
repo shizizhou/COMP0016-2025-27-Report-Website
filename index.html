@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team 27 - OssiaVoice Project</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="requirements.html">Requirements</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="ui-design.html">UI Design</a></li>
+                <li class="dropdown">
+                    <a href="#">System Design</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                        <li><a href="system-design-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Implementation</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                        <li><a href="implementation-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="testing.html">Testing</a></li>
+                <li><a href="evaluation.html">Evaluation</a></li>
+                <li class="dropdown">
+                    <a href="#">Appendices ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                        <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                        <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                        <li><a href="monthly-videos.html">Monthly Videos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Project Title -->
+        <section id="project-title">
+            <h2>Project Title: Avanade and Ossia - Offline Speech Review and Dysarthric Offline LLM</h2>
+            <p>Check out our GitHub repositories:</p>
+            <ul>
+                <li><a href="https://github.com/nigelm48/COMP0016_Group27_2024-25" target="_blank">AI PC RAG Application (Phase 1)</a></li>
+                <li><a href="https://github.com/Rainy-Day04/OssiaVoiceOffline" target="_blank">Ossia Voice Offline (Phase 2)</a></li>
+            </ul>
+        </section>
+
+        <!-- Abstract -->
+        <section id="abstract">
+            <h2>Abstract</h2>
+
+            <h3>Problem Statement</h3>
+            <p>People with speech and motion disabilities, such as those living with Motor Neurone Disease, face severe communication challenges. 
+            OssiaVoice, an AAC (Augmentative and Alternative Communication) tool, currently depends on OpenAI’s API for generating text-based responses. 
+            This reliance introduces high costs, internet dependency, and privacy concerns, limiting accessibility for users who require offline functionality. 
+            Additionally, there is a need to analyse and compare various offline LLMs to determine the best alternative for OssiaVoice. This was also achieved through our RAG chatbot to mine local research documents for answers and simplify academic research.</p>
+
+            <h3>Our Solution</h3>
+            <p>The project is structured into two key phases:</p>
+            <ul>
+                <li>Phase 1: Literature Review LLM Tool – A Python and Tkinter-based tool that enables users to mine local PDFs for research insights working with GDIHUB.
+                    This tool helps in comparing and contrasting various offline Large Language Models (LLMs) for accuracy, efficiency, and hardware compatibility. We use phase 1 to review documents containing information surrounding various offline models. We use information gathered from our program to evaluate different speech engines and their best use cases. This information will be vital in helping us to choose correct offline models that will be suitable for a wide array of speech patterns for phase 2 of the project with Ossia.</li>
+                <li>Phase 2: Offline OssiaVoice Implementation – We are modifying and improving OssiaVoice by replacing OpenAI API calls with offline models. We also plan to include various improvements and new additions, such as diarisation and personalised voice cloning for text-to-speech.
+                    This ensures lower costs, improved privacy, and greater accessibility for users who lack constant internet access.</li>
+            </ul>
+
+            <h3>Achievement & Impact</h3>
+            <p>By providing an affordable, privacy-conscious, and fully offline AI solution, our project enhances accessibility for individuals with severe speech impairments. 
+            This work reduces reliance on costly online services while maintaining high-quality, AI-assisted communication, ultimately improving users’ ability to interact and maintain relationships.</p>
+        </section>
+
+        <section>
+            <h2>Project video for both phase1 and phase2</h2>
+            <iframe width="900" height="506" src="https://www.youtube.com/embed/pxy4Vu81xNY?si=8iDJcEybfX_Cp9eD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p>Through the video, you will know what our project about, and see our demo showcase.</p>
+        </section>
+
+
+        <!-- Development Team -->
+        <section id="team">
+            <h2>Development Team</h2>
+            <div class="team-container">
+                <div class="team-member">
+                    <h3>Haocheng Xu</h3>
+                    <p>Email: haocheng.xu.23@ucl.ac.uk</p>
+                    <p>Role: Team Leader, Programmer, Researcher, Report Editor</p>
+                </div>
+                <div class="team-member">
+                    <h3>Zizhou Shi</h3>
+                    <p>Email: zizhou.shi.23@ucl.ac.uk</p>
+                    <p>Role: Programmer, Researcher, Report Editor</p>
+                </div>
+                <div class="team-member">
+                    <h3>Nigel Mathews</h3>
+                    <p>Email: nigel.mathews.23@ucl.ac.uk</p>
+                    <p>Role: UI designer, Programmer, Researcher, Blog Writer, Report Editor</p>
+                </div>
+                <div class="team-member">
+                    <h3>Neethesh Neethesh</h3>
+                    <p>Email: t.neethesh.23@ucl.ac.uk</p>
+                    <p>Role: Programmer, Researcher, Report Editor</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Project Management - Gantt Chart -->
+        <section id="gantt-chart">
+            <h2>Project Management - Gantt Chart</h2>
+            <img src="images/gantt.png" alt="Gantt Chart">
+            <p>This Gantt chart outlines the project's timeline from October 21, 2024, to March 28, 2025.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    
+
+</body>
+</html>

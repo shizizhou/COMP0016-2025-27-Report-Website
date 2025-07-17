@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design</title>
+    <link rel="stylesheet" href="styles.css">
+      <!-- Load Mermaid for diagram rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+  <header>
+    <h1></h1>
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="requirements.html">Requirements</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="ui-design.html">UI Design</a></li>
+            <li class="dropdown">
+                <a href="#">System Design</a>
+                <ul class="dropdown-menu">
+                    <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                    <li><a href="system-design-phase-2.html">Phase 2</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#">Implementation</a>
+              <ul class="dropdown-menu">
+                  <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                  <li><a href="implementation-phase-2.html">Phase 2</a></li>
+              </ul>
+          </li>
+            <li><a href="testing.html">Testing</a></li>
+            <li><a href="evaluation.html">Evaluation</a></li>
+            <li class="dropdown">
+                <a href="#">Appendices ▼</a>
+                <ul class="dropdown-menu">
+                    <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                    <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                    <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                    <li><a href="monthly-videos.html">Monthly Videos</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+  <main>
+    <!-- System Design Overview -->
+    <section>
+      <h1>System Design Overview</h1>
+      <p>
+        Our offline RAG system is built as a desktop application using Python and
+        Tkinter for the user interface. It leverages a local vector database (Chroma)
+        to store document embeddings, uses a Hugging Face transformer (via a custom
+        embedding module) to compute embeddings, and employs a Llama-based language
+        model for generating responses. Documents are ingested (PDF, Markdown, Word)
+        via a dedicated ingestion script.
+      </p>
+    </section>
+
+    <!-- High-Level Architecture Diagram -->
+    <section>
+      <h1>High-Level Architecture Diagram</h1>
+      <p>
+        The diagram below outlines the key components and their interactions:
+      </p>
+      <div class="mermaid">
+        flowchart TB
+            subgraph User["User Interface"]
+                UI[TkInter GUI]
+            end
+            
+            subgraph Core["Core Components"]
+                LLM["LLM Processing Qwen2.5-1.5b<br>"]
+                EMB["Embedding Model<br>multilingual-e5-small"]
+                VDB["Vector Database<br>Chroma"]
+            end
+            
+            subgraph Data["Document Processing"]
+                LOAD["Document Loaders<br>(PDF, Markdown, Word)"]
+                SPLIT["Text Splitter"]
+            end
+            
+            User -->|"Query"| LLM
+            LLM -->|"Response"| User
+            User -->|"Load Documents"| LOAD
+            LOAD -->|"Raw Documents"| SPLIT
+            SPLIT -->|"Text Chunks"| VDB
+            VDB <-->|"Embeddings"| EMB
+            LLM -->|"Similarity Search"| VDB
+      </div>
+      <p>
+        <em>Explanation:</em> The diagram shows how the user interface sends queries to
+        the query processor, which then uses the retrieval module to fetch relevant
+        documents from the Chroma vector database. The embedding module creates
+        embeddings, and the ingestion script populates the database. Finally, the LLM
+        generates responses based on the query and retrieved context.
+      </p>
+    </section>
+
+    <!-- Sequence Diagram: Query Processing Flow -->
+    <section>
+      <h1>Sequence Diagram: Query Processing Flow</h1>
+      <p>
+        The following sequence diagram illustrates the processing of a user query:
+      </p>
+      <div class="mermaid">
+        sequenceDiagram
+            participant User
+            participant UI as User Interface
+            participant DP as Document Processor
+            participant EE as Embedding Engine
+            participant VDB as Vector Database
+            participant LLM as LLM Engine
+            
+            %% Document Indexing Flow
+            User->>UI: Load Document/Folder
+            UI->>DP: Process Document Files
+            DP->>DP: Split into Chunks
+            DP->>EE: Generate Embeddings
+            EE->>VDB: Store Document Vectors
+            VDB-->>UI: Indexing Complete
+            UI-->>User: Confirmation
+            
+            %% Query Flow
+            User->>UI: Submit Query
+            UI->>VDB: Semantic Search
+            VDB->>VDB: Apply Content Filtering
+            VDB-->>UI: Return Relevant Documents
+            UI->>LLM: Send Query + Context
+            LLM->>LLM: Generate Response
+            LLM-->>UI: Return Response
+            UI-->>User: Display Response
+            
+            %% Database Management
+            User->>UI: Delete Database
+            UI->>VDB: Clear Database
+            VDB-->>UI: Confirmation
+            UI-->>User: Database Cleared
+      </div>
+    </section>
+
+    <section>
+        <h1>Class Design</h1>
+        <p>
+          The following class diagram shows the design of our system:
+        </p>
+        <div class="mermaid">
+            classDiagram
+                class LocalHuggingFaceEmbeddings {
+                    +tokenizer
+                    +model
+                    +device
+                    +__init__(model_path)
+                    +embed_documents(texts) list[list[float]]
+                    +embed_query(query) list[float]
+                }
+                
+                class ChromaDB {
+                    +persist_directory
+                    +embedding_function
+                    +similarity_search(query, k)
+                    +add_documents(documents, ids)
+                    +get(include)
+                }
+                
+                class DocumentLoader {
+                    +load_documents_from_directory(directory_path)
+                    +load_pdf(path)
+                    +load_md(path)
+                    +load_doc(path)
+                    +split_documents(documents)
+                    +add_to_chroma(chunks)
+                    +calculate_chunk_ids(chunks)
+                    +clear_database()
+                }
+                
+                class RAGInterface {
+                    +conversation_history
+                    +current_font_size
+                    +do_not_include_items
+                    +tokenizer
+                    +model
+                    +generator
+                    +retrieve_similar_documents(query, top_k)
+                    +generate_response(input_text, context)
+                    +send_query()
+                    +browse_file()
+                    +browse_folder()
+                    +export_conversation()
+                    +delete_database()
+            }
+            
+            RAGInterface --> LocalHuggingFaceEmbeddings : uses
+            RAGInterface --> ChromaDB : queries
+            RAGInterface --> DocumentLoader : processes files
+            DocumentLoader --> LocalHuggingFaceEmbeddings : generates embeddings
+            DocumentLoader --> ChromaDB : stores vectors
+        </div>
+      </section>
+
+    <!-- Component Details -->
+    <section>
+      <h1>Component Details</h1>
+      <ul>
+        <li>
+          <strong>User Interface (Tkinter):</strong> Provides the primary interaction
+          point with features like dynamic font resizing, file/folder browsing, and
+          conversation export. (<a href="main.py">main.py</a>)
+        </li>
+        <li>
+          <strong>Embedding Module:</strong> Computes embeddings using Hugging Face’s
+          transformer model (<em>multilingual-e5-large</em>). (<a href="embedding.py">embedding.py</a>)
+        </li>
+        <li>
+          <strong>Vector Database (Chroma):</strong> Stores and retrieves document
+          embeddings. (<a href="populate_database.py">populate_database.py</a>)
+        </li>
+        <li>
+          <strong>Document Ingestion:</strong> Processes various document types and
+          splits them into chunks for indexing. (<a href="populate_database.py">populate_database.py</a>)
+        </li>
+        <li>
+          <strong>LLM Generation:</strong> Generates natural language responses using a
+          Llama-based model (<em>Llama-3.2-3B-Instruct</em>). (<a href="main.py">main.py</a>)
+        </li>
+      </ul>
+    </section>
+
+    <!-- Integration & Data Flow -->
+    <section>
+      <h1>Integration & Data Flow</h1>
+      <p>
+        All components are designed to operate offline. The data flow starts with
+        document ingestion and embedding creation, followed by storage in the Chroma
+        vector database. When a query is processed, the system retrieves relevant
+        documents using semantic search, and the LLM generates a response based on the
+        retrieved context.
+      </p>
+    </section>
+
+    <!-- Final Notes -->
+    <section>
+      <h1>Final Notes</h1>
+      <p>
+        The system is modular, allowing independent updates to each component. It
+        supports scalability with batch processing and includes resource management
+        for GPU/MPS environments. The user interface provides interactive feedback to
+        ensure a smooth experience.
+      </p>
+    </section>
+    
+  </main>
+
+</body>
+</html>

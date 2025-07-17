@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Manual</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="requirements.html">Requirements</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="ui-design.html">UI Design</a></li>
+                <li class="dropdown">
+                    <a href="#">System Design</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                        <li><a href="system-design-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Implementation</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                        <li><a href="implementation-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="testing.html">Testing</a></li>
+                <li><a href="evaluation.html">Evaluation</a></li>
+                <li class="dropdown">
+                    <a href="#">Appendices ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                        <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                        <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                        <li><a href="monthly-videos.html">Monthly Videos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main> 
+        <!-- Table of Contents -->
+        <section id="toc">
+            <h2>User and Deployment Manual</h2>
+            <h3>Contents with quick links</h3>
+            <ul>
+                <li><a href="#phase1">Phase 1: Offline-LLM Powered Literature Review Tool</a></li>
+                <li><a href="#phase2">Phase 2: Offline LLM with Ossia Voice</a></li>
+            </ul>
+        </section>
+        
+        <!-- Phase 1 Content -->
+        <section id="phase1" class="phase-section">
+            <h2>Phase 1: Offline-LLM Powered Literature Review Tool</h2>
+            
+            <section id="introduction">
+                <h3>Introduction</h3>
+                <p>The Offline-LLM Powered Literature Review Tool is designed to enhance small-scale LLMs with RAG-based improvements. This manual provides a step-by-step guide to setting up and using the system.</p>
+            </section>
+            
+            <section id="getting-started">
+                <h3>Getting Started</h3>
+                <p><strong>System Requirements:</strong></p>
+                <ul>
+                    <li>Operating System: Windows, macOS</li>
+                    <li>Memory: 16GB recommended</li>
+                    <li>Storage: 30GB free space</li>
+                    <li>GPU: NVIDIA with CUDA support or Apple Silicon (for MPS acceleration) is preferred</li>
+                    <li style="color: white;">Python: 3.10, 3.11 or 3.12 - <a href="https://uclcshub.github.io/docs/set-up-environment" target="_blank" style="color: white;">UCL CS Hub Setup Guide</a></li>
+                    <li style="color: white;">For apple mps acceleration debug - <a href="https://developer.apple.com/metal/pytorch/" target="_blank" style="color: white;">Accelerated PyTorch on Mac</a></li>
+                </ul>
+                
+                <p><strong>Running Steps (CPU and Apple MPS accelerated):</strong></p>
+                <ol>
+                    <li>Download the software executable package of your OS.</li>
+                    <li>Extract files and navigate to the directory.</li>
+                    <li>Run the executable. (you will see a terminal window open up first. Please wait for the application to load as this may take some time, depending on your device)</li>
+                </ol>
+                <h4>For mac exec and windows exe, if you have problem running, please refer the steps below</h4>
+                <p><strong>Deployment Steps from sourcecode (CPU and Apple MPS accelerated):</strong></p>
+                <ol>
+                    <li>Clone the project repository:
+                        <pre><code>git clone https://github.com/nigelm48/COMP0016_Group27_2024-25.git</code></pre>
+                    </li>
+                    <li>Navigate to the project directory:
+                        <pre><code>cd COMP0016_Group27_2024-25</code></pre>
+                    </li>
+                    <li>Manually download the required models from Hugging Face(if you use the code from onedrive, the models may have included in the folder):
+                        <ul>
+                            <li style="color: white;"><a href="https://huggingface.co/Qwen/Qwen2.5-1.5B" target="_blank">Qwen2.5-1.5B</a></li>
+                            <li style="color: white;"><a href="https://huggingface.co/intfloat/multilingual-e5-small" target="_blank">multilingual-e5-small</a></li>
+                        </ul>
+                    </li>
+                    <li>Place the downloaded model directories inside the project root directory, maintaining the following structure:
+                        <pre><code>COMP0016_Group27_2024-25/
+├── multilingual-e5-small/       # Directory containing the multilingual-e5-small model files
+├── Qwen2.5-1.5B/                # Directory containing the Qwen2.5-1.5B model files</code></pre>
+                    </li>
+                    <li>Install required Python libraries -please do this in clean environment or venv:
+                        <pre><code>pip install -r requirements.txt</code></pre>
+                    </li>
+                    <li>Compile the code:
+                        <pre><code>pyinstaller build.spec</code></pre>
+                        OR
+                        <pre><code>python -m PyInstaller build.spec</code></pre>
+                    </li>
+                    <li>Run the executable file in the dist folder.</li>
+                </ol>
+                
+                <p><strong>Running Steps (CUDA Accelerated):</strong></p>
+                <ol>
+                    <li>Download and install the latest NVIDIA driver and CUDA toolkit compatible with your GPU from:  
+                        <a href="https://developer.nvidia.com/cuda-downloads" target="_blank">https://developer.nvidia.com/cuda-downloads</a>
+                    </li>
+                    <li>Clone the project repository:
+                        <pre><code>git clone https://github.com/nigelm48/COMP0016_Group27_2024-25.git</code></pre>
+                    </li>
+                    <li>Navigate to the project directory:
+                        <pre><code>cd COMP0016_Group27_2024-25</code></pre>
+                    </li>
+                    <li>Manually download the required models from Hugging Face(if you use the code from onedrive, the models may have included in the folder):
+                        <ul>
+                            <li><a href="https://huggingface.co/Qwen/Qwen2.5-1.5B" target="_blank">Qwen2.5-1.5B</a></li>
+                            <li><a href="https://huggingface.co/intfloat/multilingual-e5-small" target="_blank">multilingual-e5-small</a></li>
+                        </ul>
+                    </li>
+                    <li>Place the downloaded model directories inside the project root directory, maintaining the following structure:
+                        <pre><code>COMP0016_Group27_2024-25/
+├── multilingual-e5-small/       # Directory containing the multilingual-e5-small model files
+├── Qwen2.5-1.5B/                # Directory containing the Qwen2.5-1.5B model files</code></pre>
+                    </li>
+                    <li>Install required Python libraries-please do this in clean environment or venv:
+                        <pre><code>pip install -r requirements.txt</code></pre>
+                        <p>Make sure you install CUDA-powered torch</p>
+                        <p> if not, uninstall torch and</p>
+                        <pre><code>pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121</code></pre>
+
+                    </li>
+                    <li>For CUDA: Ensure your system uses a Python version >= 3.10 and your environment supports CUDA.</li>
+                    <li>Run the main application:
+                        <pre><code>python main.py</code></pre>
+                    </li>
+                </ol>
+                
+                <p><strong>Deployment Steps (CUDA accelerated):</strong></p>
+                <ol>
+                    <li>After completing installation, proceed to compile the code:</li></li>
+                    <li>Compile the code:
+                        <pre><code>pyinstaller build.spec</code></pre>
+                        OR
+                        <pre><code>python -m PyInstaller build.spec</code></pre>
+                    </li>
+                    <li>Run the executable file in the dist folder.</li>
+                </ol>
+
+                <p><strong>Sample data:</strong></p>
+                <p>Sample data can be found in the <code>sample_data</code> folder of the OneDrive.</p>
+            </section>
+            
+            <section id="features">
+                <h3>Features</h3>
+                <ul>
+                    <li>RAG-enhanced LLM responses.</li>
+                    <li>Offline functionality for privacy.</li>
+                    <li>RAG with Chroma Database.</li>
+                </ul>
+            </section>
+            
+            <section id="usage">
+                <h3>Usage</h3>
+                <ul>
+                    <li>Load documents from the User Folder.</li>
+                    <li>Manage and remove the database as needed.</li>
+                    <li>Ask questions and receive LLM-generated responses.</li>
+                    <li>Export chat history for future reference.</li>
+                </ul>
+                
+                <div class="screenshot-container">
+                    <img src="images/phase1ui.png" alt="Literature Review Tool Interface" class="usage-screenshot">
+                    <p class="screenshot-caption">Figure 1: Screenshot of the Literature Review Tool interface showing the document query and response system</p>
+                </div>
+
+                <div class="interface-explanation">
+                    <h4>AI RAG Assistant Interface Explanation</h4>
+                    <p>The GUI (Graphical User Interface) of the AI RAG Assistant includes the following elements:</p>
+                    
+                    <ol class="interface-features">
+                        <li>
+                            <strong>Model Information (Top Bar)</strong>
+                            <ul>
+                                <li>Shows the LLM path and the Embedding model used.</li>
+                                <li>In this case:
+                                    <ul>
+                                        <li>LLM: Located in /Users/haochengxu/Documents/COMP0016_Group27_2024-25/jids/AI_RAG_Assistant/_internal/Qwen2.5-1.5B</li>
+                                        <li>Embedding model: multilingual-e5-small</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Settings of Font (Top Bar)</strong>
+                            <ul>
+                                <li>Allows users to adjust the AI assistant's font size.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Main Text Display Area</strong>
+                            <ul>
+                                <li>The large blank space is where responses and interactions appear.</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Input Box (Below the Text Display)</strong>
+                            <ul>
+                                <li>Users type their queries here before clicking Send to get AI responses.</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Control Buttons (Below the Input Box)</strong>
+                            <ul>
+                                <li><strong>Load Folder:</strong> Import a directory of documents.</li>
+                                <li><strong>Load File:</strong> Import a single document.</li>
+                                <li><strong>Delete Database:</strong> Remove the stored vector database.</li>
+                                <li><strong>Export Chat:</strong> Save the chat history.</li>
+                                <li><strong>Send:</strong> Submit a query to the AI assistant.</li>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <strong>Filtering and Exclusion Options</strong>
+                            <ul>
+                                <li><strong>Do Not Include Items:</strong> Users can specify documents or terms to be excluded from responses.</li>
+                                <li><strong>Filter Field:</strong> Allows users to refine the Do Not Include Items based on keywords.</li>
+                                <li><strong>Apply Filter and Sort Items:</strong> Help manage Do Not Include Items efficiently.</li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <strong>Helper (Top left)</strong>
+                            <ul>
+                                <li>Displays introduction to software and example usage.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Search (Top left)</strong>
+                            <ul>
+                                <li>Search within main display area</li>
+                                <li><- previous result</li>
+                                <li>-> next result</li>
+                                <li>clear - remove all search mark and results</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            <div class="workflow">
+                <h4>Workflow</h4>
+                <p>The typical workflow of the AI RAG Assistant involves the following steps:</p>
+                <ol>
+                    <li><strong>Document Loading:</strong> Import documents from the User Folder or single file.</li>
+                    <li><strong>Add do-not-include items:</strong> Ensure data safety.</li>
+                    <li><strong>Query Submission:</strong> Ask questions and receive AI-generated responses.</li>
+                    <li><strong>Export Chat History:</strong> Save the chat history for future reference.</li>
+                    <li><strong>Database Management:</strong> Remove or import more to database the database as needed.</li>
+                    <li><strong>Close app:</strong> The app will automatically release resources.</li>
+                </ol>
+            </div>
+            <h3>Workflow guide video</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/wMDjjBQqmwc?si=C-OESogJ0Hkr0eL1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </section>
+            
+            <section id="troubleshooting">
+                <h3>Troubleshooting</h3>
+                <p><strong>Q: How do I reset the database?</strong></p>
+                <p>A: Use the "Remove Database" option in settings.</p>
+                <p><strong>Q: Can I add new document sources?</strong></p>
+                <p>A: Yes, PDFs, markdowns and word files can be added.</p>
+                <p><strong>Q: Is my data stored online?</strong></p>
+                <p>A: No, the entire workflow remains offline for privacy.</p>
+                <p><strong>Q: I have trouble compiling,</strong></p>
+                <p>A: please add magic to excludes=[] in build.spec.</p>
+                <p><strong>Q: I have trouble running on mac,</strong></p>
+                <p>A: please refer to https://developer.apple.com/metal/pytorch/ to install mps powered pytorch.</p>
+            </section>
+        </section>
+        
+        <!-- Phase 2 Content -->
+        <section id="phase2" class="phase-section">
+            <h2>Phase 2: Offline LLM with Ossia Voice</h2>
+            
+            <section id="ossia-introduction">
+                <h3>Introduction</h3>
+                <p>Ossia Voice is an accessibility tool for Augmentative and Alternative Communication designed to help people with significant speech and motion difficulties, such as those with Motor Neurone Disease. This offline version eliminates the need for API keys or internet connectivity.</p>
+            </section>
+            
+            <section id="ossia-getting-started">
+                <h3>Getting Started</h3>
+                <p><strong>System Requirements:</strong></p>
+                <ul>
+                    <li>Operating System: Windows 10/11, macOS 12+</li>
+                    <li>Memory: 16GB recommended</li>
+                    <li>Storage: 20GB free space</li>
+                    <li>GPU: NVIDIA with CUDA support or Apple Silicon (for MPS acceleration), standard x86 CPU is also ok</li>
+                    <li>Chrome browser</li>
+                    <li>Internet speed: recommended at least 100 Mbps</li>
+                    <li>Node.js: latest version</li>
+                </ul>
+                
+                <p><strong>Installation and deployment Steps:</strong></p>
+                <ol>
+                    <li>Download the Ossia Voice offline package from our GitHub repository</li>
+                    <li>Extract the downloaded archive to your preferred location</li>
+                    <li>Install Node.js from <a href="https://nodejs.org/en" target="_blank">https://nodejs.org/en</a></li>
+                    <li>Choose the version that fits your needs:
+                        <div class="version-tabs">
+                            <div class="version-tab">
+                                <h4>Standard Version</h4> 
+                                <pre><code>git clone https://github.com/Rainy-Day04/OssiaVoiceOffline.git
+cd OssiaVoiceOffline
+npm install
+npm run dev</code></pre>
+                            </div>
+                            
+                            <div class="version-tab">
+                                <h4>Diarization Version</h4>
+                                <pre><code>git clone https://github.com/Rainy-Day04/OssiaVoiceOffline.git
+cd OssiaVoiceOffline
+git checkout stt-diarization
+git pull
+npm install
+npm run dev</code></pre>
+                            </div>
+                            
+                            <div class="version-tab">
+                                <h4>Realtime STT Version</h4>
+                                <pre><code>git clone https://github.com/Rainy-Day04/OssiaVoiceOffline.git
+cd OssiaVoiceOffline
+git checkout stt-realtime-whisper
+git pull
+npm install
+npm run dev</code></pre>
+                            </div>
+                        </div>
+                    </li>
+                    <li>Follow the on-screen instructions to complete setup</li>
+                </ol>
+            </section>
+            
+            <section id="ossia-features">
+                <h3>Features</h3>
+                <ul>
+                    <li>Offline LLM generation without upload to external partners</li>
+                    <li>Multiple voice input experimental options</li>
+                    <li>Accessible interface for users with MNDs</li>
+                    <li>less than 1 words typed per chat</li>
+                    <li>Integration with assistive devices and switches</li>
+                    <li>No API costs or usage limits</li>
+                </ul>
+            </section>
+            <section id="ossia-UI">
+                <h3>UI</h3>
+                <div class="screenshot-container">
+                    <img src="images/ossia-ui.png" alt="Ossia Voice Setup Screen" class="usage-screenshot">
+                    <p class="screenshot-caption">Figure 2: Screenshot of the Ossia Voice UI</p>
+                </div>
+
+                <p><strong>Interface Controls:</strong></p>
+                <ul>
+                    <li>Main input area(top left): enter message or voice input the message</li>
+                    <li>Saved phrases panel(bottom left): set the keywords(first option), tone (second option) and topic(third option) and generate sentences</li>
+                    <li>Message center(bottom right): choose generated words to submit</li>
+                    <li>Settings menu(top left gear icon): Initial Setups</li>
+                </ul>
+            </section>
+            
+            <section id="ossia-usage">
+                <h3>Usage</h3>
+                <ol>
+                    <li><strong>Initial Setup:</strong> Finish the settings and backstory </li>
+                </ol>
+
+                <div class="screenshot-container">
+                    <img src="images/ossia-setup-screen.png" alt="Ossia Voice Setup Screen" class="usage-screenshot">
+                    <p class="screenshot-caption">Figure 2: Screenshot of the Ossia Voice setup screen where users can configure voice settings and backstory</p>
+                </div>
+
+                <ol start="2">
+                    <li><strong>Usage:</strong></li>
+                    <div class="screenshot-container">
+                        <img src="images/ossiausage.png" alt="Ossia Voice Setup Screen" class="usage-screenshot">
+                        <p class="screenshot-caption">Figure 3: Usage flow of the Ossia Voice</p>
+                    </div>
+                    
+                </ol>
+                <h3>Workflow guide video</h3>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/4SAeKoJ2OLk?si=qJ81Ts9PUCqXGrl3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>    
+            </section>
+            
+            <section id="ossia-troubleshooting">
+                <h3>Troubleshooting</h3>
+                <p><strong>Q: Why is the voice output not working?</strong></p>
+                <p>A: Check your microphone and browser microphone permission settings.</p>
+                <p><strong>Q: How do I change the voice settings?</strong></p>
+                <p>A: Use the settings menu.</p>
+                <p><strong>Q: What happens if the UI shows fails loading a model</strong></p>
+                <p>A: Please check your internet and browser privacy settings.</p>
+                <p><strong>If this is still unsolved, please switch to Google Chrome.</strong></p>
+            </section>
+
+            <section id="ossia-support">
+                <h3>Support</h3>
+                <p>For additional support or to report issues, please contact us through the GitHub repository.</p>
+            </section>
+
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

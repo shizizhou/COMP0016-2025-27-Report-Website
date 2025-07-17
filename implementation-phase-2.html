@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation: Phase 2</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="requirements.html">Requirements</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="ui-design.html">UI Design</a></li>
+        <li class="dropdown">
+          <a href="#">System Design</a>
+          <ul class="dropdown-menu">
+            <li><a href="system-design-phase-1.html">Phase 1</a></li>
+            <li><a href="system-design-phase-2.html">Phase 2</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Implementation</a>
+          <ul class="dropdown-menu">
+            <li><a href="implementation-phase-1.html">Phase 1</a></li>
+            <li><a href="implementation-phase-2.html">Phase 2</a></li>
+          </ul>
+        </li>
+        <li><a href="testing.html">Testing</a></li>
+        <li><a href="evaluation.html">Evaluation</a></li>
+        <li class="dropdown">
+          <a href="#">Appendices ▼</a>
+          <ul class="dropdown-menu">
+            <li><a href="user-manual.html">User and Deployment Manual</a></li>
+            <li><a href="gdpr.html">GDPR & Privacy</a></li>
+            <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+            <li><a href="monthly-videos.html">Monthly Videos</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Speech-to-Text (STT) Implementations -->
+    <section id="stt">
+      <h1>Speech-to-Text (STT) Implementation</h1>
+      
+      <!-- 1. Model Selection and Voice Cloning -->
+      <article id="model-selection">
+        <h2>1. Model Selection and Voice Cloning</h2>
+        <p>This feature allows users to select AI models and upload audio samples for voice cloning using the following frameworks and libraries:</p>
+        <ul>
+          <li><strong>Vue.js</strong>: For building the user interface.</li>
+          <li><strong>Vuetify</strong>: For UI components.</li>
+          <li><strong>LocalStorage</strong>: For storing user settings and uploaded files.</li>
+        </ul>
+        <h3>Key Components</h3>
+        <p>The <code>SettingsOverlay.vue</code> component includes:</p>
+        <ul>
+          <li>Dropdowns for AI and Speech-to-Text model selection.</li>
+          <li>File input for uploading audio samples.</li>
+          <li>Functions to handle file uploads and model selection.</li>
+        </ul>
+        <pre><code>
+&lt;v-select
+  v-model="selectedModel"
+  label="Select Model"
+  :items="['OpenAI', '9b Model', '3b Model']"
+  @update:modelValue="saveSelectedModel"
+&gt;&lt;/v-select&gt;
+
+&lt;v-file-input
+  v-model="voiceClips"
+  multiple
+  label="Upload audio clips"
+  accept="audio/*"
+  @change="handleFileUpload"
+&gt;&lt;/v-file-input&gt;
+
+&lt;v-btn @click="startVoiceCloning" :disabled="uploadedClips.length === 0"&gt;Clone Voice&lt;/v-btn&gt;
+        </code></pre>
+        <h3>Code Explanation</h3>
+        <p>This section uses Vue's Composition API for reactive state management. The selected model is stored in the <code>settingsStore</code> and saved to local storage, while audio files are managed through a file input component, with voice cloning triggered via the <code>startVoiceCloning</code> function.</p>
+      </article>
+      
+      <!-- 2. Microphone Recording and Transcription -->
+      <article id="mic-recording">
+        <h2>2. Microphone Recording and Transcription</h2>
+        <p>This feature enables microphone recording and transcription using the following technologies:</p>
+        <ul>
+          <li><strong>Vue.js</strong>: For building the user interface.</li>
+          <li><strong>Hugging Face Transformers</strong>: For leveraging the Whisper ASR models.</li>
+          <li><strong>MediaDevices API</strong>: For accessing the microphone input.</li>
+        </ul>
+        <h3>Key Components of speech to text standard version</h3>
+        <p>The <code>MicButton.vue</code> component includes:</p>
+        <ul>
+          <li>Functions to start and stop recording using the MediaDevices API.</li>
+          <li>Integration with Hugging Face Whisper models for transcription.</li>
+        </ul>
+        <pre><code>
+async function startRecording() {
+  audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  mediaRecorder = new MediaRecorder(audioStream);
+  audioChunks = [];
+
+  mediaRecorder.ondataavailable = (e) => {
+    if (e.data.size > 0) audioChunks.push(e.data);
+  };
+
+  mediaRecorder.onstop = async () => {
+    const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+    const output = await transcriber(URL.createObjectURL(audioBlob));
+    if (output?.text) {
+      model.value = output.text;
+      emit("textAvailable", output.text);
+    }
+    cleanup();
+  };
+
+  mediaRecorder.start();
+}
+        </code></pre>
+        <h4>Code Explanation</h4>
+        <p>This section uses the MediaDevices API for microphone access. Recorded audio is processed using the Hugging Face Whisper model to generate and display transcriptions.</p>
+        
+
+        <h3>Key Components of Speaker Diarization</h3>
+        <p>This feature enables speaker diarization using the following technologies:</p>
+        <ul>
+          <li><strong>Pyannote</strong>: For speaker segmentation.</li>
+        </ul>
+        <h4>Key Components with demo code rewrite for logic explain only</h4>
+
+<h4>1. Model Loading Architecture</h4>
+<p>Dual-model system with specialized initialization sequence:</p>
+<pre><code class="language-javascript">// Component mounting sequence
+async onMounted() {
+  // Speech-to-Text Model
+  transcriber = await pipeline("automatic-speech-recognition", selectedModel);
+  
+  // Diarization Processor
+  segmentationProcessor = await AutoProcessor.from_pretrained(
+    'onnx-community/pyannote-segmentation-3.0'
+  );
+  
+  // Speaker Segmentation Model (WebAssembly optimized)
+  segmentationModel = await AutoModelForAudioFrameClassification.from_pretrained(
+    'onnx-community/pyannote-segmentation-3.0', 
+    { device: 'wasm', dtype: 'fp32' }
+  );
+}</code></pre>
+
+<h4>2. Core Merging Algorithm</h4>
+<p>Three-phase temporal alignment strategy:</p>
+<pre><code class="language-javascript">function mergeResults(transcription, diarization) {
+  // Phase 1: Data sanitization
+  const validSegments = diarization.filter(s => 
+    s.end - s.start >= 0.5 && s.confidence >= 0.8
+  );
+  
+  // Phase 2: Temporal alignment
+  const formattedSegments = transcription.chunks.reduce((acc, chunk) => {
+    const speaker = findOptimalSpeaker(chunk.timestamp, validSegments);
+    return mergeSegments(acc, chunk, speaker);
+  }, []);
+  
+  // Phase 3: Segment consolidation
+  function mergeSegments(acc, chunk, speaker) {
+    const last = acc[acc.length - 1];
+    const newSegment = {
+      start: chunk.timestamp[0],
+      end: chunk.timestamp[1],
+      text: chunk.text.trim(),
+      speaker
+    };
+  
+    if (last && last.speaker === speaker && (chunk.timestamp[0] - last.end < 1.5)) {
+      last.text += ` ${newSegment.text}`;
+      last.end = newSegment.end;
+      return acc;
+    }
+    return [...acc, newSegment];
+  }
+}</code></pre>
+
+<h4>3. Speaker Matching Logic</h4>
+<p>Multi-criteria temporal analysis:</p>
+<pre><code class="language-javascript">function findSpeaker([start, end], segments) {
+  // 1. Full containment check
+  const container = segments.find(s => 
+    s.start <= start && s.end >= end
+  );
+  
+  // 2. Significant overlap (35% threshold)
+  const overlapped = segments.filter(s => {
+    const overlap = Math.min(end, s.end) - Math.max(start, s.start);
+    return overlap / (end - start) >= 0.35;
+  });
+  
+  // 3. Midpoint proximity fallback
+  const midpoint = (start + end) / 2;
+  return container || overlapped[0] || 
+    segments.reduce((a,b) => 
+      Math.abs(midpoint - (a.start+a.end)/2) < 
+      Math.abs(midpoint - (b.start+b.end)/2) ? a : b
+    );
+}</code></pre>
+
+</pre>
+
+<h3>Key Components of Realtime Speech-to-Text</h3>
+  
+<h4>1. Intelligent Noise Reduction</h4>
+<p>Real-time audio processing pipeline with multi-stage filtering:</p>
+<pre><code>
+  const noiseGate = audioContext.createDynamicsCompressor();
+  noiseGate.threshold.value = -50; // Signal threshold in dB 
+  noiseGate.knee.value = 40;       // Transition range in dB
+  noiseGate.ratio.value = 12;      // Compression ratio of 12:1 for effective noise reduction
+  noiseGate.attack.value = 0.003;  // Attack time in seconds (3ms) 
+  noiseGate.release.value = 0.25;  // Release time in seconds (250ms)
+  
+  // Apply spectral filtering via low-pass filter
+  const lowPassFilter = audioContext.createBiquadFilter();
+  lowPassFilter.type = 'lowpass';
+  lowPassFilter.frequency.value = 8000; // Cutoff frequency at 8kHz preserves speech harmonics
+  
+  // Configure audio processing signal chain
+  mediaStreamSource.connect(noiseGate);
+  noiseGate.connect(lowPassFilter);
+
+</code></pre>
+<pre><code>
+scriptProcessor.onaudioprocess = e => {
+const chunk = e.inputBuffer.getChannelData(0);
+// Skip silent chunks
+if (!chunk.some(s => s !== 0)) return;
+
+// Buffer audio in 1s intervals
+audioBuffers.push(new Float32Array(chunk));
+if (Date.now() - lastSendTime >= Interval) {
+  //merge into buffer
+}
+}</code></pre>
+
+<h4>2. Fallback Processing System</h4>
+<p>Robust failure recovery mechanisms:</p>
+<ul>
+  <li><strong>Web Worker Fallback</strong>: Secondary real-time processing</li>
+  <li><strong>Main Thread Pipeline</strong>: High-quality Primary processing</li>
+</ul>
+<pre><code>
+async function stopRecording() {
+try {
+  // Primary processing attempt
+  const result = await transcriber(fullAudio);
+  model.value = result.text;
+  //send to other components
+} catch (error) {
+  // Fallback to worker results
+}
+}</code></pre>
+
+<h4>3. Realtime display with throttling</h4>
+<pre>
+<code>
+  /**
+ * Handle partial transcription results with throttling
+ * Updates model value with intermediate results for responsive UI
+ */
+const throttledUpdate = throttle((text) => {
+  if (!text) return;
+  
+  if (partialResult.value !== text) {
+    if (partialResult.value) {
+      accumulatedText.value += partialResult.value + ' ';
+    }
+    partialResult.value = text;
+  }
+  
+  if (model !== undefined) {
+    model.value = accumulatedText.value + text;
+  }
+}, 200);</code>
+</pre>
+      </article>
+
+  
+      
+      <!-- 3. Message Generation -->
+      <article id="message-generation">
+        <h2>3. Message Generation</h2>
+        <p>This feature generates messages using selected models with the following technologies:</p>
+        <ul>
+          <li><strong>CreateMLCEngine</strong>: For generating messages using LLM models.</li>
+          <li><strong>OpenAI API</strong>: For generating responses using OpenAI's models.</li>
+        </ul>
+        <h3>Key Components</h3>
+        <p>The <code>MessageStore.js</code> file includes:</p>
+        <ul>
+          <li>Functions for message generation based on selected models and prompt inputed.</li>
+          <li>Integration with CreateMLCEngine or OpenAI API for generating messages.</li>
+        </ul>
+        <pre><code>
+const chatCompletionModel = settingStore.selectedLLMModel === "OpenAI"
+  ? new OpenAIImplementation()
+  : new WebLLMImplementation();
+
+async create(messages, retryCount = 3) {
+    try {
+      while (this.engineLoading) {
+        await sleep(100);
+      }
+
+      if (this.engine === null) {
+        this.engineLoading = true;
+        try {
+          await this.setup();
+        } finally {
+          this.engineLoading = false;
+        }
+      }
+      
+      const completion = await this.engine.chat.completions.create({
+        messages,
+      });
+      console.log(completion);
+      console.log('The result is', completion.choices[0].message.content);
+      return JSON.parse(
+        completion.choices[0].message.content.trim()
+          .replace(/(^[^[]+|[^\]]+$)/g, '')     
+          .replace(/,\s*]$/, ']')               
+          .replace(/"\s+"/g, '", "')            
+          .replace(/(?<=\{)\s*([^"]+?)\s*:/g, '"$1":')
+      );
+    } 
+        </code></pre>
+        <h3>Code Explanation</h3>
+        <p>This section selects the appropriate model based on user settings and generates messages by sending commands to the model, then processing and returning the responses.</p>
+        <pre><code>
+async function generateSentences() {
+    const command = `Given the Current Conversation History, generate a list of 3 to 5 short generic sentences the 
+    assistant may want to say. You must respond only with a valid JSON list of suggestions and NOTHING else.`
+    let messages = [
+        {role: "system", content: getSentenceSystemMessage()},
+        {role: "user", content: command}
+        ]
+    sentenceSuggestions.value = await chatCompletionModel.getResponse(messages, false, true) || sentenceSuggestions.value
+    activeEditHistory.value = activeEditHistory.value.concat([
+        {role: "system", content: command},
+        {role: "assistant", content: `{"suggestions": ["${sentenceSuggestions.value.join('", "')}"]}`}
+        ])
+        }
+
+async function generateWords() {
+    const command = `Given the Current Conversation History, generate a short list of key words or 
+    very short phrases the user can select from to build a new sentence. You must respond only with a valid JSON list 
+    of suggestions and NOTHING else.`
+    let messages = [
+        {role: "system", content: getKeywordSystemMessage()},
+        {role: "user", content: command}
+        ]
+        wordSuggestions.value = await chatCompletionModel.getResponse(messages, true, false) || wordSuggestions.value
+        }
+                  </code></pre>
+                  <h3>Code Explanation</h3>
+                  <p>This section give command to LLM model to generate sentences and words based on the conversation history.</p>
+      </article>
+    </section>
+    
+    <!-- Text-to-Speech (TTS) Implementation -->
+    <section id="tts">
+      <h1>Text-to-Speech (TTS) Implementation</h1>
+      <article>
+        <h2>Implementation Details</h2>
+        <h3>Frameworks/Libraries Used:</h3>
+        <ul>
+          <li><a href="https://huggingface.co/transformers/">Huggingface Transformers</a>: Utilized for text-to-speech conversion.</li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API">Web Audio API</a>: Used to handle audio playback in the browser.</li>
+        </ul>
+        <h3>Implementation Steps</h3>
+        <p><strong>1. Library Imports:</strong></p>
+        <pre><code>
+import { AutoTokenizer, AutoProcessor, SpeechT5ForTextToSpeech, SpeechT5HifiGan, Tensor } from '@huggingface/transformers';
+        </code></pre>
+        <p><strong>2. Tokenization and Processing:</strong></p>
+        <pre><code>
+const tokenizer = await AutoTokenizer.from_pretrained('Xenova/speecht5_tts');
+const processor = await AutoProcessor.from_pretrained('Xenova/speecht5_tts');
+        </code></pre>
+        <p><strong>3. Model Loading:</strong></p>
+        <pre><code>
+const model = await SpeechT5ForTextToSpeech.from_pretrained('Xenova/speecht5_tts', { dtype: 'fp32' });
+const vocoder = await SpeechT5HifiGan.from_pretrained('Xenova/speecht5_hifigan', { dtype: 'fp32' });
+        </code></pre>
+        <p><strong>4. Speaker Embeddings:</strong></p>
+        <pre><code>
+const speaker_embeddings_data = new Float32Array(
+  await (await fetch('/custom_speaker_embedding_single.bin')).arrayBuffer()
+);
+const speaker_embeddings = new Tensor(
+  'float32',
+  speaker_embeddings_data,
+  [1, speaker_embeddings_data.length]
+);
+        </code></pre>
+        <p><strong>5. Generate Speech:</strong></p>
+        <pre><code>
+const { input_ids } = tokenizer(text);
+const { waveform } = await model.generate_speech(input_ids, speaker_embeddings, { vocoder });
+        </code></pre>
+        <p><strong>6. Audio Playback:</strong></p>
+        <pre><code>
+const sampleRate = 16000; // Replace with your actual sampling rate if different
+
+// Create an AudioContext
+const audioContext = new AudioContext();
+
+// Create an AudioBuffer with 1 channel, length equal to waveform.size, and the desired sample rate
+const audioBuffer = audioContext.createBuffer(1, waveform.size, sampleRate);
+
+// Copy the waveform data into the AudioBuffer (assumes waveform.data is a Float32Array)
+audioBuffer.copyToChannel(waveform.data, 0, 0);
+
+// Create a buffer source node and set its buffer to the AudioBuffer
+const source = audioContext.createBufferSource();
+source.buffer = audioBuffer;
+
+// Connect the source node to the AudioContext's destination (the speakers)
+source.connect(audioContext.destination);
+
+// Start playback. (Browsers require a user gesture to start AudioContext if it is suspended.)
+source.start();
+        </code></pre>
+        <h3>Summary</h3>
+        <p>The TTS feature is implemented using the Huggingface Transformers library for text tokenization, processing, and speech synthesis. The generated audio waveform is played back via the Web Audio API, and custom speaker embeddings personalize the voice output.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

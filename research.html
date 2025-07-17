@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="requirements.html">Requirements</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="ui-design.html">UI Design</a></li>
+                <li class="dropdown">
+                    <a href="#">System Design</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                        <li><a href="system-design-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Implementation</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                        <li><a href="implementation-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="testing.html">Testing</a></li>
+                <li><a href="evaluation.html">Evaluation</a></li>
+                <li class="dropdown">
+                    <a href="#">Appendices ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                        <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                        <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                        <li><a href="monthly-videos.html">Monthly Videos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <main>
+        <section id="phase1">
+        <h1>Phase1</h1>
+        <h2>Related project review</h2>
+        <p>Before starting to build our own project, we conducted research on existing RAG AI solutions. One well-known approach is using the Ollama + AnythingLLM client. In this setup, users need to use Ollama to download and manage LLMs and then utilize AnythingLLM to call the model and connect to a database. Afterward, users can ask questions through AnythingLLM.</p>
+        <p>However, this approach has several drawbacks:</p>
+        <p><strong>Complex operation</strong> – Users need to install multiple third-party clients, configure them manually, and establish connections between them to achieve RAG functionality.</p>
+        <p><strong>Limited flexibility</strong> – Users can only use models supported by the Ollama client and cannot freely adjust models or experiment with new open-source models.</p>
+        <p>Our Project Goal</p>
+        <p>To address these limitations, our goal is to enable users to utilize RAG AI functionality without relying on any third-party software. Additionally, we want users to have the freedom to choose and use any LLM they prefer, without being restricted by third-party platforms.</p>
+        <img src="images/anythingllm.png" alt="llm">
+        <p>Figure 1: Ollama + AnythingLLM client</p>
+        <h2>Large Language Model (LLM) Comparison</h2>
+        <p>Aiming for 16GB of user memory, we tested the requirements and performance of major open-source large language models to determine which model was best suited for RAG project.</p>
+        <h3>Generation Speed Comparison</h3>
+        <table>
+            <tr>
+                <th>Model</th>
+                <th>Size</th>
+                <th>Memory Used (GB)</th>
+                <th>Generate Time (s)</th>
+            </tr>
+            <tr>
+                <td>llama3.2-3b</td>
+                <td>3B</td>
+                <td>10.94</td>
+                <td>11.74</td>
+            </tr>
+            <tr>
+                <td>qwen3.2-3b</td>
+                <td>3B</td>
+                <td>9.55</td>
+                <td>9.69</td>
+            </tr>
+            <tr>
+                <td>llama3.2-1b</td>
+                <td>1B</td>
+                <td>5.93</td>
+                <td>7.21</td>
+            </tr>
+            <tr>
+                <td>qwen3.2-1.5b</td>
+                <td>1B</td>
+                <td>7.47</td>
+                <td>6.35</td>
+            </tr>
+        </table>
+        <h3>Generation Response Evaluation</h3>
+        <p>In our tests, we used the article “Enhancing Communication Equity: Evaluation of an Automated Speech Recognition Application in Ghana” to test LLM's RAG capability, link to article:</p>
+        <a href="https://dl.acm.org/doi/10.1145/3613904.3641903" class="active">Enhancing Communication Equity: Evaluation of an Automated Speech Recognition Application in Ghana</a>
+        <div class="table-container">
+            <h4>Evaluation Criteria</h4>
+            <table>
+                <tr>
+                    <th>Criteria</th>
+                    <th>Excellent (4-5)</th>
+                    <th>Good (2-3)</th>
+                    <th>Poor (0-1)</th>
+                </tr>
+                <tr>
+                    <td>Understanding of Concept</td>
+                    <td>Thoroughly explains key concepts with relevant study examples.</td>
+                    <td>Partially explains key concepts but lacks depth or examples.</td>
+                    <td>Fails to explain concepts or provides incorrect information.</td>
+                </tr>
+                <tr>
+                    <td>Use of Supporting Evidence</td>
+                    <td>Provides strong evidence from the study, including participant insights.</td>
+                    <td>Uses some evidence, but lacks depth or specificity.</td>
+                    <td>No or weak evidence from the study.</td>
+                </tr>
+                <tr>
+                    <td>Critical Analysis</td>
+                    <td>Offers deep analysis of issues, potential solutions, and their impact.</td>
+                    <td>Provides a basic analysis but lacks depth.</td>
+                    <td>Superficial or no analysis.</td>
+                </tr>
+                <tr>
+                    <td>Clarity & Organization</td>
+                    <td>Well-structured, clear, and logically presented answer.</td>
+                    <td>Partially structured with minor clarity issues.</td>
+                    <td>Disorganized, difficult to follow, or incomplete.</td>
+                </tr>
+                <tr>
+                    <td>Innovative Thinking</td>
+                    <td>Offers unique insights or practical recommendations.</td>
+                    <td>Some insights but lacks originality.</td>
+                    <td>No insights or original thought.</td>
+                </tr>
+            </table>
+        </div>
+    
+        <div class="table-container">
+            <h4>Qwen 2.5 3B</h4>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Contextual Factors</th>
+                    <th>Model Adaptation and Flexibility</th>
+                    <th>Human-Technology Interaction</th>
+                    <th>Broader Policy and Ethical Considerations</th>
+                </tr>
+                <tr>
+                    <td>Understanding of Concept</td>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Use of Supporting Evidence</td>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Critical Analysis</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Clarity & Organization</td>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Innovative Thinking</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                </tr>
+            </table>
+            <p class="score">Total Score: 89</p>
+    
+            <h4>Llama 3.2 3B</h4>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Contextual Factors</th>
+                    <th>Model Adaptation and Flexibility</th>
+                    <th>Human-Technology Interaction</th>
+                    <th>Broader Policy and Ethical Considerations</th>
+                </tr>
+                <tr>
+                    <td>Understanding of Concept</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Use of Supporting Evidence</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Critical Analysis</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Clarity & Organization</td>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Innovative Thinking</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+            </table>
+            <p class="score">Total Score: 78</p>
+    
+            <h4>Qwen 1.5B</h4>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Contextual Factors</th>
+                    <th>Model Adaptation and Flexibility</th>
+                    <th>Human-Technology Interaction</th>
+                    <th>Broader Policy and Ethical Considerations</th>
+                </tr>
+                <tr>
+                    <td>Understanding of Concept</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Use of Supporting Evidence</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Critical Analysis</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Clarity & Organization</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Innovative Thinking</td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+            </table>
+            <p class="score">Total Score: 69</p>
+    
+            <h4>Llama 1B</h4>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Contextual Factors</th>
+                    <th>Model Adaptation and Flexibility</th>
+                    <th>Human-Technology Interaction</th>
+                    <th>Broader Policy and Ethical Considerations</th>
+                </tr>
+                <tr>
+                    <td>Understanding of Concept</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Use of Supporting Evidence</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Critical Analysis</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>3</td>
+                </tr>
+                <tr>
+                    <td>Clarity & Organization</td>
+                    <td>3</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>Innovative Thinking</td>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>3</td>
+                </tr>
+            </table>
+            <p class="score">Total Score: 59</p>
+        </div>
+    </section>
+    <section id="Phase2">
+        <h1>Phase2</h1>
+        <h2>Related project review</h2>
+        <p>As part of our Phase 2 research, we explored ElevenLabs, a platform specializing in AI-generated speech like Ossia. levenLabs provides human-like voice synthesis in multiple languages, making it a strong competitor in the text-to-speech (TTS) and voice AI space. </p>
+        <p>However, the Elevenlabs has a serious defect: The system relies heavily on manual text input, which can be challenging for users with mobility difficulties. In contrast, Ossia is designed to function with an average of lower than 1 word typed per minute, significantly reducing the effort required for users with limited mobility.</p>
+        <img src="images/elevenlab.png" alt="llm">
+        <p>The main page of elevenlabs</p>
+        <h2>Project Research</h2>
+        <p>In order to achieve the best performance for our project, we carried out a lot of research and testing to find the most suitable technical solution for the project. The research is mainly divided to three parts: Large-language-model, Text-to-speech, and Speech-to-text.</p>
+    
+        <h2>Large Language Model (LLM) Comparison</h2>
+        <p>To find the most suitable large language model for our project, we tested the generation time of major open-source LLMs and their response performance, including Llama, Qwen, Gemma, etc. All LLM is running on Macbook pro M4 Max with 48 unified memory.</p>
+    
+        <h3>Generation Speed Comparison</h3>
+    <table>
+        <tr>
+            <th>Model</th>
+            <th>Size</th>
+            <th>Memory Used (GB)</th>
+            <th>Generate Time (s)</th>
+        </tr>
+        <tr><td>DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC</td><td>8B</td><td>7.27</td><td>40.2</td></tr>
+        <tr><td>DeepSeek-R1-Distill-Qwen-7B-q4f16_1-MLC</td><td>8B</td><td>Error</td><td>Error</td></tr>
+        <tr><td>Llama-3.1-8B-Instruct-q4f16_1-MLC</td><td>8B</td><td>8.77</td><td>11.77</td></tr>
+        <tr><td>Qwen2.5-7B-Instruct-q4f16_1-MLC</td><td>7B</td><td>6.55</td><td>13.50</td></tr>
+        <tr><td>gemma-2-9b-it-q4f16_1-MLC</td><td>9B</td><td>9.23</td><td>13.64</td></tr>
+        <tr><td>Llama-3.2-3B-Instruct-q4f16_1-MLC</td><td>3B</td><td>3.63</td><td>7.26</td></tr>
+        <tr><td>Qwen2.5-3B-Instruct-q4f16_1-MLC</td><td>3B</td><td>3.12</td><td>12.45</td></tr>
+        <tr><td>gemma-2-2b-it-q4f16_1-MLC</td><td>2B</td><td>4.16</td><td>13.4</td></tr>
+        <tr><td>Llama-3.2-1B-Instruct-q4f16_1-MLC</td><td>1B</td><td>2.13</td><td>4.49</td></tr>
+        <tr><td>Qwen2.5-1.5B-Instruct-q4f16_1-MLC</td><td>1.5B</td><td>2.16</td><td>8.09</td></tr>
+    </table>
+    
+        <h3>Generated Response Comparison</h3>
+        <table>
+            <tr>
+                <th>Model</th>
+                <th>Answer to Question: "Who is your favourite tennis player?"</th>
+                <th>Rank</th>
+            </tr>
+            <tr><td>DeepSeek-R1-Distill-Llama-8B-q4f16_1-MLC</td><td>With answers make no sense</td><td>Unusable</td></tr>
+            <tr><td>DeepSeek-R1-Distill-Qwen-7B-q4f16_1-MLC</td><td>Error</td><td>Unusable</td></tr>
+            <tr><td>Llama-3.1-8B-Instruct-q4f16_1-MLC</td><td>Can generate some famous tennis players’ names and use them to create sentences</td><td>2</td></tr>
+            <tr><td>Qwen2.5-7B-Instruct-q4f16_1-MLC</td><td>Can generate some famous tennis players’ names and use them to create sentences</td><td>1</td></tr>
+            <tr><td>gemma-2-9b-it-q4f16_1-MLC</td><td>Can generate some famous tennis players’ names and use them to create sentences</td><td>2</td></tr>
+            <tr><td>Llama-3.2-3B-Instruct-q4f16_1-MLC</td><td>Sometimes will generate the keyword not really relative (cannot generate any tennis player name)</td><td>5</td></tr>
+            <tr><td>Qwen2.5-3B-Instruct-q4f16_1-MLC</td><td>Likely to generate some tennis player names, but sometimes will just list related words about tennis</td><td>4</td></tr>
+            <tr><td>gemma-2-2b-it-q4f16_1-MLC</td><td>Can generate answers as good as other 8B models</td><td>3</td></tr>
+            <tr><td>Llama-3.2-1B-Instruct-q4f16_1-MLC</td><td>Cannot generate tennis-related words, and have errors when using words to create sentences</td><td>Unusable</td></tr>
+            <tr><td>Qwen2.5-1.5B-Instruct-q4f16_1-MLC</td><td>Sometimes can generate tennis player names, but most of the time just relative words</td><td>6</td></tr>
+        </table>
+        <h3>Conclution</h3>
+        <p>If user's device have 16g memory with Radeon or Nvidia gpu, I recommend using 8b models, both of llama and qwen have good performence.
+
+            While for the user with 8g memory or lower, gemma2-2b performance is better, and it just take 4g memory.
+            
+            I don't recommend using the 1b model at all, unless the user's device performance simply can't support the better one. Using this model requires multiple user guides to produce the desired sentence.</p>
+    
+        <h2>Text-To-Speech (TTS) Comparison</h2>
+        <table>
+            <tr>
+                <th>Model</th>
+                <th>Speed</th>
+                <th>Licence</th>
+                <th>Languages</th>
+                <th>Size</th>
+                <th>Voice Similarity</th>
+                <th>Extra Features</th>
+                <th>Accent/Style Quality</th>
+                <th>Links</th>
+            </tr>
+            <tr>
+                <td>E2-F5-TTS</td>
+                <td>Near real-time</td>
+                <td>MIT</td>
+                <td>English</td>
+                <td>Medium</td>
+                <td>High</td>
+                <td>Simple cloning</td>
+                <td>Good</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>StyleTTS 2</td>
+                <td>Moderate</td>
+                <td>Apache 2.0</td>
+                <td>English</td>
+                <td>Medium</td>
+                <td>High</td>
+                <td>Style transfer, emotion control</td>
+                <td>Excellent</td>
+                <td><a href="https://github.com/yl4579/StyleTTS2" target="_blank">Link</a></td>
+            </tr>
+            <tr>
+                <td>XTTS v2.0.3</td>
+                <td>Fast</td>
+                <td>MIT</td>
+                <td>Arabic, Brazilian Portuguese, Mandarin Chinese, Czech, Dutch, English, French, German, Italian, Polish, Russian, Spanish, Turkish, Japanese, Korean, Hungarian, Hindi</td>
+                <td>Medium</td>
+                <td>High</td>
+                <td>Voice cloning with 6-second sample</td>
+                <td>Excellent</td>
+                <td><a href="https://huggingface.co/coqui/XTTS-v2" target="_blank">Link</a></td>
+            </tr>
+            <tr>
+                <td>OpenVoice</td>
+                <td>Fast</td>
+                <td>MIT</td>
+                <td>Multilingual</td>
+                <td>Medium</td>
+                <td>High</td>
+                <td>Flexible style control, zero-shot cross-lingual cloning</td>
+                <td>Excellent</td>
+                <td><a href="https://github.com/myshell-ai/OpenVoice" target="_blank">Link</a></td>
+            </tr>
+            <tr>
+                <td>Real Time Voice Cloning</td>
+                <td>Real-time</td>
+                <td>MIT</td>
+                <td>English</td>
+                <td>Medium</td>
+                <td>High</td>
+                <td>Real-time cloning with minimal data</td>
+                <td>Good</td>
+                <td><a href="https://github.com/CorentinJ/Real-Time-Voice-Cloning" target="_blank">Link</a></td>
+            </tr>
+            <tr>
+                <td>VITS</td>
+                <td>Fast</td>
+                <td>Apache 2.0</td>
+                <td>Multilingual</td>
+                <td>Medium</td>
+                <td>High</td>
+                <td>Voice cloning, emotion</td>
+                <td>Excellent</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>Mimic 3</td>
+                <td>Fast</td>
+                <td>BSD</td>
+                <td>Multilingual</td>
+                <td>Medium</td>
+                <td>High</td>
+                <td>Voice cloning, customizable voices</td>
+                <td>Good</td>
+                <td>-</td>
+            </tr>
+            <tr>
+                <td>SpeechT5</td>
+                <td>Moderate</td>
+                <td>MIT</td>
+                <td>Multilingual (English, Chinese, and others with fine-tuning)</td>
+                <td>Medium</td>
+                <td>High</td>
+                <td>Pre-trained for both TTS and ASR, supports speaker embedding-based voice cloning</td>
+                <td>Good</td>
+                <td><a href="https://github.com/microsoft/SpeechT5" target="_blank">Link</a></td>
+            </tr>
+        </table>
+        <h2>Speech-To-Text (STT) Comparison</h2>
+        <h3>Clear Speech Results</h3>
+            <div class="table-responsive">
+            <table>
+                <tr>
+                <th>Model</th>
+                <th>CER</th>
+                <th>WER</th>
+                <th>BLEU</th>
+                <th>ROUGE-1 (Precision/Recall/F1)</th>
+                <th>ROUGE-L (Precision/Recall/F1)</th>
+                </tr>
+                <tr>
+                <td>Whisper-tiny</td>
+                <td>0.0752</td>
+                <td>0.2449</td>
+                <td>0.6532</td>
+                <td>0.8627 / 0.88 / 0.8713</td>
+                <td>0.8627 / 0.88 / 0.8713</td>
+                </tr>
+                <tr>
+                <td>Whisper-base</td>
+                <td>0.0451</td>
+                <td>0.2041</td>
+                <td>0.6992</td>
+                <td>0.9388 / 0.92 / 0.9293</td>
+                <td>0.9388 / 0.92 / 0.9293</td>
+                </tr>
+                <tr>
+                <td>Whisper-small</td>
+                <td>0.0301</td>
+                <td>0.1020</td>
+                <td>0.8350</td>
+                <td>0.9388 / 0.92 / 0.9293</td>
+                <td>0.9388 / 0.92 / 0.9293</td>
+                </tr>
+                <tr>
+                <td>Whisper-medium</td>
+                <td>0.0301</td>
+                <td>0.1020</td>
+                <td>0.8350</td>
+                <td>0.9388 / 0.92 / 0.9293</td>
+                <td>0.9388 / 0.92 / 0.9293</td>
+                </tr>
+            </table>
+            </div>
+        <h3>Unclear Speech Results</h3>
+        <div class="table-responsive">
+          <table>
+            <tr>
+              <th>Model</th>
+              <th>CER</th>
+              <th>WER</th>
+              <th>BLEU</th>
+              <th>ROUGE-1 (Precision/Recall/F1)</th>
+              <th>ROUGE-L (Precision/Recall/F1)</th>
+            </tr>
+            <tr>
+              <td>Whisper-tiny</td>
+              <td>0.2331</td>
+              <td>0.4898</td>
+              <td>0.4010</td>
+              <td>0.6415 / 0.6800 / 0.6602</td>
+              <td>0.6415 / 0.6800 / 0.6602</td>
+            </tr>
+            <tr>
+              <td>Whisper-base</td>
+              <td>0.2256</td>
+              <td>0.4082</td>
+              <td>0.4411</td>
+              <td>0.7551 / 0.7400 / 0.7475</td>
+              <td>0.7551 / 0.7400 / 0.7475</td>
+            </tr>
+            <tr>
+              <td>Whisper-small</td>
+              <td>0.1541</td>
+              <td>0.4490</td>
+              <td>0.4578</td>
+              <td>0.7843 / 0.8000 / 0.7921</td>
+              <td>0.7647 / 0.7800 / 0.7723</td>
+            </tr>
+            <tr>
+              <td>Whisper-medium</td>
+              <td>0.0977</td>
+              <td>0.2245</td>
+              <td>0.6160</td>
+              <td>0.8936 / 0.8400 / 0.8660</td>
+              <td>0.8936 / 0.8400 / 0.8660</td>
+            </tr>
+          </table>
+        </div>
+    </div>
+    <div style="border-left: 4px solid #333; padding: 10px; background-color: #f9f9f9;">
+        <p><strong>CER (Character Error Rate):</strong> This metric measures errors at the character level (such as insertions, deletions, or substitutions). A lower CER means the transcription is more accurate.</p>
+        <p><strong>WER (Word Error Rate):</strong> This tells us how many mistakes there are at the word level. A lower WER indicates fewer mistakes in the transcription.</p>
+        <p><strong>BLEU (Bilingual Evaluation Understudy):</strong> BLEU evaluates how closely the transcription matches the reference by looking at n-gram overlaps. A higher BLEU score means the transcription is more similar to the reference text.</p>
+        <p><strong>ROUGE-1 (Unigram Overlap):</strong> ROUGE-1 checks how many individual words match between the transcription and the reference text, using precision, recall, and F-measure. A higher ROUGE-1 score suggests a better match in terms of basic word choice.</p>
+        <p><strong>ROUGE-L (Longest Common Subsequence):</strong> ROUGE-L goes a step further by looking at the longest common sequence of words between the two texts, giving insight into how well the overall sentence structure is preserved. A higher ROUGE-L score indicates a closer match in both content and order.</p>
+      </div>
+<h3>Loading time and responce time acceptance</h3>
+<h4>Response Time Comparison</h4>
+<div class="table-responsive">
+  <table>
+    <tr>
+      <th>Model</th>
+      <th>Processing Time (s)</th>
+    </tr>
+    <tr>
+      <td>Whisper-tiny</td>
+      <td>0.7146</td>
+    </tr>
+    <tr>
+      <td>Whisper-base</td>
+      <td>1.1301</td>
+    </tr>
+    <tr>
+      <td>Whisper-small</td>
+      <td>3.0367</td>
+    </tr>
+    <tr>
+      <td>Whisper-medium</td>
+      <td>6.3204</td>
+    </tr>
+  </table>
+  <h4>Loading Time Acceptance</h4>
+  <div class="table-responsive">
+    <table>
+      <tr>
+        <th>Model</th>
+        <th>Satisfactory rate</th>
+      </tr>
+      <tr>
+        <td>Whisper-tiny</td>
+        <td>100%</td>
+      </tr>
+      <tr>
+        <td>Whisper-base</td>
+        <td>100%</td>
+      </tr>
+      <tr>
+        <td>Whisper-small</td>
+        <td>88.9%</td>
+      </tr>
+      <tr>
+        <td>Whisper-medium</td>
+        <td>0%(loading error under slow network)</td>
+      </tr>
+    </table>
+    <p>For the loading time, we have set the acceptance criteria as 80% satisfactory, and for the response time, we have set the acceptance criteria as 5s. 
+    The above table shows the comparison of the loading time and response time of different models.</p>
+    <h3>Conclusion</h3>
+    <p>Based on the Response Time, loading time, and quality of the stt, we recommend using the Whisper-tiny, base and small model for the project.
+         The Whisper-medium model has a loading error under slow network conditions, so it is not recommended for the project.</p>
+    </p>
+    <h3>Advantage over the original default chrome STT:</h3>
+    <p>Better accept the elderly by increase the acceptance for unclear speech. The below is the original browser STT:</p>
+    <div class="wireframe-flow">
+        <img src="images/browser_stt.png" alt="/">
+    </div>
+    <p>Reference text: Hello, welcome to our speech recognition system. The weather today is sunny.</p>
+    <p>browser-default STT result: weather today</p>
+    <p>Whisper-tiny(the smallest Whisper mode) result: Hello, welcome to our speaker recognition system. Whether today is sunny</p> 
+</div>
+
+
+
+    
+
+</body>
+</html>

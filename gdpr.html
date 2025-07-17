@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GDPR & Privacy</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1></h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="requirements.html">Requirements</a></li>
+        <li><a href="research.html">Research</a></li>
+        <li><a href="ui-design.html">UI Design</a></li>
+        <li><a href="system-design.html">System Design</a></li>
+        <li class="dropdown">
+          <a href="#">System Design</a>
+          <ul class="dropdown-menu">
+              <li><a href="system-design-phase-1.html">Phase 1</a></li>
+              <li><a href="system-design-phase-2.html">Phase 2</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#">Implementation</a>
+          <ul class="dropdown-menu">
+              <li><a href="implementation-phase-1.html">Phase 1</a></li>
+              <li><a href="implementation-phase-2.html">Phase 2</a></li>
+          </ul>
+      </li>
+        <li><a href="testing.html">Testing</a></li>
+        <li><a href="evaluation.html">Evaluation</a></li>
+        <li class="dropdown">
+          <a href="#">Appendices ▼</a>
+          <ul class="dropdown-menu">
+            <li><a href="user-manual.html">User and Deployment Manual</a></li>
+            <li><a href="gdpr.html" class="active">GDPR & Privacy</a></li>
+            <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+            <li><a href="monthly-videos.html">Monthly Videos</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="gdpr-intro">
+      <h2>GDPR & Privacy Considerations</h2>
+      <p>
+        Our project comprises two distinct experiments, each with unique privacy considerations. As offline AI solutions, both systems prioritize data privacy by design where all data processing occurs locally, in line with GDPR principles and the legal guidelines outlined inSystem engineering.
+      </p>
+    </section>
+
+    <!-- Phase 1: Literature Review Tool -->
+    <section id="phase1-privacy" class="gdpr-section">
+      <h3>Phase 1: Offline LLM-Powered Literature Review Tool</h3>
+      
+      <div class="license-notice">
+        <p><strong>License:</strong> Please contact UCL GDIHUB for licensing information</p>
+        <p>For more details, visit <a href="https://www.ucl.ac.uk/epidemiology-health-care/global-disability-innovation-hub" target="_blank">UCL Global Disability Innovation Hub</a></p>
+      </div>
+      
+      <div class="privacy-card">
+        <h4>Data Collection</h4>
+        <p>
+          The literature review tool processes, but keeps offline, the following data types in compliance with GDPR:
+        </p>
+        <ul>
+          <li><strong>Document Content:</strong> Academic papers, research documents, and literature uploaded by researchers are all processed locally.</li>
+          <li><strong>User Queries:</strong> Search terms, questions and export chat history to local text files.</li>
+          <li><strong>User Interactions:</strong> Filter selections and choices for excluding certain items.</li>
+        </ul>
+        <p>
+          <strong>Privacy Advantage:</strong> All processing occurs locally on the user's machine with no data transmitted to external servers, ensuring data minimization and purpose limitation.
+        </p>
+      </div>
+
+      <div class="privacy-card">
+        <h4>Data Storage & Security</h4>
+        <ul>
+          <li>All documents and derived vector embeddings are stored locally in a secure database on the user's device.</li>
+          <li>No cloud write/export of sensitive research materials.</li>
+          <li>History and generated responses remain solely on the local system.</li>
+          <li>Users maintain complete control over document insertion and deletion.</li>
+        </ul>
+      </div>
+
+      <div class="privacy-card">
+        <h4>GDPR Compliance Measures</h4>
+        <ul>
+          <li><strong>Right to Access:</strong> Users can directly access all their data via the local file system.</li>
+          <li><strong>Right to Erasure:</strong> A simple process enables deletion of document collections using a dedicated button.</li>
+          <li><strong>Data Minimization:</strong> Only processes documents explicitly added by the user.</li>
+          <li><strong>Purpose Limitation:</strong> Data is used exclusively for document analysis and retrieval functions.</li>
+        </ul>
+      </div>
+      
+      <div class="privacy-card">
+        <h4>User Controls</h4>
+        <ul>
+          <li>Full control over which documents are indexed.</li>
+          <li>Options to exclude specific sections from analysis.</li>
+          <li>Database clearing functionality to remove all processed data.</li>
+          <li>No usage statistics collection.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Phase 2: Ossia Voice -->
+    <section id="phase2-privacy" class="gdpr-section">
+      <h3>Phase 2: Offline LLM with Ossia Voice</h3>
+      
+      <div class="license-notice">
+        <p><strong>License:</strong> Attribution-NonCommercial 4.0 International (CC BY-NC 4.0 DEED)</p>
+        <p>In addition, the contributor agreement below applies. If these terms do not suit your needs, please reach out for suitable collaboration.</p>
+        <p>Any contributor, by adding to or adapting the contents of this repository, accepts that the original author (@arneyjfs) retains full ownership over it's contents</p>
+      </div>
+      
+      <p>The below info are considered when NOT selecting OpenAI (OpenAI option is kept for compatibility) on model choice part.</p>
+      <p>If OpenAI is selected, data will be passed to OpenAI for processing, please refer to OpenAI official website for more info.</p>
+      
+      <div class="privacy-card">
+        <h4>Data Collection</h4>
+        <p>
+          The Ossia Voice system processes the following data types:
+        </p>
+        <ul>
+          <li><strong>User Input:</strong> Text, voice and commands(button pressed) entered into the system.</li>
+          <li><strong>Generated Speech:</strong> Voice outputs produced by the system.</li>
+          <li><strong>User Preferences:</strong> Voice settings and personalization options.</li>
+        </ul>
+        <p>
+          <strong>Privacy Advantage:</strong> Unlike current OpenAI-dependent versions, our solution processes all data locally without sending to OpenAI, eliminating cloud privacy risks.
+        </p>
+      </div>
+
+      <div class="privacy-card">
+        <h4>Special Considerations for Accessibility</h4>
+        <p>
+          As an assistive technology for individuals with NMD:
+        </p>
+        <ul>
+          <li>User communication content is treated as highly sensitive personal data.</li>
+          <li>The tests has been done to simulate the disabled's ability to use the software.</li>
+        </ul>
+      </div>
+
+      <div class="privacy-card">
+        <h4>Data Security Measures</h4>
+        <ul>
+          <li>All processing occurs on the user's device with no external data transmission.</li>
+          <li>The system operates on one way transimission(download only), eliminating network-based vulnerabilities.</li>
+        </ul>
+      </div>
+
+      <div class="privacy-card">
+        <h4>GDPR Compliance</h4>
+        <ul>
+          <li><strong>Data Minimization:</strong> Only essential information for operation is processed and stored.</li>
+          <li><strong>Storage Limitation:</strong> No long-term storage of user interactions is performed.</li>
+          <li><strong>Transparency:</strong> No chat history is saved.</li>
+          <li><strong>User Rights:</strong> Users have easy access to delete any locally stored settings on their browser.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Privacy by Design and Legal Compliance -->
+    <section class="gdpr-summary">
+      <h3>Privacy by Design Approach</h3>
+      <p>
+        Both phases of our project were developed with privacy as a fundamental design principle. By creating fully offline alternatives to cloud-based AI systems, we have eliminated many traditional privacy concerns while providing equivalent functionality.
+      </p>
+      <ul>
+        <li>Minimizing data collection to only what is necessary.</li>
+        <li>Processing all data locally on user devices.</li>
+        <li>Providing users with complete control over their data.</li>
+        <li>Eliminating risks associated with data transmission and third-party processing.</li>
+        <li>Ensuring accessibility without compromising privacy.</li>
+      </ul>
+    </section>
+
+    <section class="legal-compliance">
+      <h3>Legal Compliance and Data Governance</h3>
+      <p>
+        In accordance with the guidelines outlined in our course and the COMP0016 lecture materials Legal Issues, this project adheres to:
+      </p>
+      <ul>
+        <li>GDPR principles : ensuring Lawfulness, fairness and transparency, 
+          Purpose limitation, 
+          Data minimisation, 
+          Accuracy, 
+          Storage limitation, 
+          Integrity and confidentiality (security), 
+          Accountability.</li>
+        <li>User rights : including access, correction, and erasure of personal data.</li>
+        <li>Data protection by design : all processing is executed locally without transmission to external servers.</li>
+      </ul>
+    </section>
+
+    <section class="reference-section">
+      <h2>Reference & Source Libraries</h2>
+      
+      <!-- Phase 1: Literature Review Tool -->
+      <div class="reference-card">
+        <h3>Phase 1: Offline LLM-Powered Literature Review Tool</h3>
+        
+        <div class="reference-subsection">
+          <h4>Source Libraries</h4>
+          <ul>
+            <li><strong>Python Standard Libraries- PSF license </strong>
+              <ul>
+                <li><code>gc</code> - Garbage collection</li>
+                <li><code>os</code> - Operating system interfaces for file operations</li>
+                <li><code>time</code> - Time access</li>
+                <li><code>shutil</code> - High-level file operations</li>
+                <li><code>argparse</code> - argument parsing</li>
+              </ul>
+            </li>
+            <li><strong>GUI Framework- no lincense required</strong>
+              <ul>
+                <li><code>tkinter</code> - Standard Python interface to Tk GUI toolkit</li>
+              </ul>
+            </li>
+            <li><strong>Machine Learning</strong>
+              <ul>
+                <li><code>torch</code> - BSD 2-Clause License, but with a 3rd clause that prohibits others from using the name of the copyright holder or its contributors to promote derived products without written consent.</li>
+                <li><code>transformers</code> - Apache License 2.0. </li>
+              </ul>
+            </li>
+            <li><strong>LangChain Ecosystem - MIT license</strong>
+              <ul>
+                <li><code>langchain_chroma</code> </li>
+                <li><code>langchain.prompts</code> </li>
+                <li><code>langchain_community.vectorstores</code> </li>
+                <li><code>langchain_community.document_loaders</code></li>
+                <li><code>langchain_text_splitters</code> </li>
+                <li><code>langchain.schema.document</code> </li>
+              </ul>
+            </li>
+            <li><strong>Loading logo</strong>
+              <ul>
+                <li><code>pillow </code> MIT license</li>
+              </ul>
+            </li>
+            <li><strong>Models used</strong>
+              <ul>
+                <li><code>multilingual-e5-small</code> - MIT lincense</li>
+                <li><code>Qwen 2.5 series models</code> - Qwen LICENSE AGREEMENT: https://huggingface.co/Qwen/Qwen2.5-72B-Instruct/resolve/main/LICENSE</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Phase 2: Ossia Voice -->
+      <div class="reference-card">
+        <h3>Phase 2: Ossia Voice with Offline LLM</h3>
+        
+        <div class="reference-subsection">
+          <h4>Source Libraries</h4>
+          <ul>
+            <li><strong>STT Libraries</strong>
+              <ul>
+                <li><code>huggingface/transformers</code> - Apache LicenseVersion 2.0 </li>
+                <li><code>vue</code> - MIT License</li>
+                <li><code>Whisper models of different sizes, onnx format</code> - MIT License</li>
+                <li><code>onnx-community/pyannote-segmentation-3.0</code> - MIT License</li>
+              </ul>
+          </li>
+          <li><strong>TTS Libraries</strong>
+            <ul>
+              <li><code>huggingface/transformers</code> - Apache LicenseVersion 2.0 </li>
+              <li><code>Xenova/speecht5_tts</code> - MIT License</li>
+            </ul>
+        </li>
+        <li><strong>Offline LLM Libraries</strong>
+          <ul>
+            <li><code>huggingface/transformers</code> - Apache LicenseVersion 2.0 </li>
+            <li><code>Gemma2</code> - Apache LicenseVersion 2.0 </li>
+          </ul>
+      </li>
+
+          <li><strong>all other part Libraries</strong>
+            <ul>
+              <li><code>huggingface/transformers</code> - Apache License 2.0</li>
+              <li><code>@lc-ai/web-llm</code> - Apache License 2.0</li>
+              <li><code>@xenova/transformers</code> - Apache License 2.0</li>
+              <li><code>openai</code> N/A</li>
+              <li><code>pinia</code> - MIT License</li>
+              <li><code>vue-router</code> - MIT License</li>
+              <li><code>vuetify</code> - MIT License</li>
+              <li><code>@mdi/font</code> - Apache 2.0 and MIT </li>
+              <li><code>@rushstack/eslint-patch</code> - MIT License</li>
+              <li><code>@vitejs/plugin-vue</code> - MIT License</li>
+              <li><code>@vue/eslint-config-prettier</code> - MIT License</li>
+              <li><code>@vue/test-utils</code> - MIT License</li>
+              <li><code>cypress</code> - MIT License</li>
+              <li><code>eslint</code> - MIT License</li>
+              <li><code>eslint-plugin-cypress</code> - MIT License</li>
+              <li><code>eslint-plugin-vue</code> - MIT License</li>
+              <li><code>jsdom</code> - MIT License</li>
+              <li><code>prettier</code> - MIT License</li>
+              <li><code>sass</code> - MIT License</li>
+              <li><code>start-server-and-test</code> - N/A</li>
+              <li><code>vite</code> - MIT License</li>
+              <li><code>vitest</code> - MIT License</li>
+            </ul>
+            </ul>
+
+
+         
+          <h4>Reference Projects</h4>
+          <ul>
+            <li><strong>Speech Processing research non-MoscoW-listed-feature</strong>
+              <ul>
+                <li><code>Whisper realtime</code> - Reused this project's worker file and use the project's concept idea of chunk processing</li>
+                <li>https://github.com/huggingface/transformers.js/blob/main/examples/webgpu-whisper/src/worker.js</li>
+                <li>Licensed under Apache License Version 2.0.</li>
+              </ul>
+        </div>
+
+
+    </section>
+  </main>
+
+
+  <script src="script.js"></script>
+</body>
+</html>

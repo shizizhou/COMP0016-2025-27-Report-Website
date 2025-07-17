@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Design</title>
+    <link rel="stylesheet" href="styles.css">
+      <!-- Load Mermaid for diagram rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="requirements.html">Requirements</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="ui-design.html">UI Design</a></li>
+                <li class="dropdown">
+                    <a href="#">System Design</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                        <li><a href="system-design-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Implementation</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                        <li><a href="implementation-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="testing.html">Testing</a></li>
+                <li><a href="evaluation.html">Evaluation</a></li>
+                <li class="dropdown">
+                    <a href="#">Appendices ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                        <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                        <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                        <li><a href="monthly-videos.html">Monthly Videos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>System Overview</h2>
+            <p>The OssiaVoice project leverages a modular architecture optimized for accessibility, responsiveness, and privacy. It integrates powerful language models, real-time speech processing, and user-specific settings management to provide an adaptive communication solution.</p>
+        </section>
+    
+        <section>
+            <h2>High-Level Architecture</h2>
+            <div class="mermaid">
+                flowchart TD
+                User[User Interface] --> State[State Management - Pinia]
+                State --> Logic[Business Logic]
+                Logic --> Integration["External Integrations<br/> (where necessary)"]
+                Integration --> Output[Audio Output & Suggestions]
+            </div>
+            <p>
+                The high-level architecture is user-centric, integrating UI, state management, logic, and external services to deliver adaptive communication.
+            </p>
+        </section>
+    
+        <section>
+            <h2>Detailed Architecture Layers</h2>
+            <div class="mermaid">
+                flowchart TD
+                    subgraph UI[User Interface]
+                        Browser --> VueApp[Vue.js Application]
+                        VueApp --> Components[Vue Components: Message Builder, Accessibility Controls]
+                    end
+                    subgraph State[State Management]
+                        Components --> PiniaStores[Pinia Stores: Message, Settings, Alert, Loading, Microphone]
+                    end
+                    subgraph Logic[Business Logic]
+                        PiniaStores --> TextEngine[Text Generation Engine]
+                        TextEngine --> PromptGen[Prompt Generation & Editing Logic]
+                    end
+                    subgraph Integration[Integrations]
+                        TextEngine --> OpenAI[OpenAI API]
+                        TextEngine --> WebLLM[WebLLM Models]
+                        Components --> STT[Speech-to-Text Module]
+                        Components --> TTS[Text-to-Speech Module]
+                    end
+            </div>
+            <p>OssiaVoice features interconnected layers including Vue.js for the UI, Pinia for state management, and integrations like OpenAI and WebLLM.</p>
+        </section>
+    
+        <section>
+            <h2>Speech-to-Text Workflow</h2>
+            <div class="mermaid">
+                flowchart TD
+                    STT[Speech-to-Text Module] --> Mode{STT Branch}
+                    Mode --> Standard[Standard STT Engine]
+                    Mode --> Diarization[Diarization STT Engine]
+                    Mode --> Realtime[Realtime Whisper STT Engine]
+
+                    %% Standard Flow
+                    Standard --> A1[Audio]
+                    A1 --> W1[Whisper]
+                    W1 --> T1[Text]
+
+                    %% Diarization Flow
+                    Diarization --> A2[Audio]
+                    A2 --> W2[Whisper]
+                    A2 --> S2[Segment Model]
+                    W2 --> M2["Merge Algorithm<br/>(3 modes) + Filter"]
+                    S2 --> M2
+                    M2 --> T2[Text]
+
+                    %% Realtime Flow
+                    Realtime --> A3[Audio Flow]
+                    A3 --> WF["Worker File (WebGPU)"]
+                    WF --> RT[Realtime Text]
+
+                    Realtime --> A4["Audio (Finalized)"]
+                    A4 --> W3[Whisper]
+                    W3 --> FT[Text]
+            </div>
+            <p>OssiaVoice features an adaptive Speech-to-Text (STT) framework designed with modularity and extensibility in mind, 
+                leveraging GitHub repositories to allow continuous evolution and integration of new STT engines. 
+                This architecture enables developers to easily introduce, update, or optimize specific STT modes tailored to various user scenarios</p>
+        </section>
+
+        <section>
+            <h2>Text-to-Speech Workflow</h2>
+            <div class="mermaid">
+                flowchart LR
+                    User[User] -->|Uploads Voice Clips| WebApp[OssiaVoice Web Application]
+                    WebApp -->|Sends clips for processing| PythonAPI[External Python API]
+                    PythonAPI -->|Generates Speaker Embeddings| Embeddings[Speaker Embeddings]
+                    Embeddings -->|Returned embeddings| WebApp
+                    WebApp -->|Combines Embeddings & Text Input| SpeechT5[SpeechT5 TTS Model]
+                    SpeechT5 -->|Generates Custom Voice Audio| Output[Custom Cloned Voice Audio]
+                    Output -->|Plays synthesized audio| User
+            </div>
+            <p>The OssiaVoice system allows users to create highly personalized speech synthesis by uploading their own voice clips. 
+                These voice samples are securely transmitted to an external Python API, which processes the audio to generate unique speaker embeddings. 
+                The embeddings capture the distinct characteristics of the user's voice, enabling a custom vocal profile.</p>
+        </section>
+    
+        <section>
+            <h2>Suggestion Generation Sequence</h2>
+            <div class="mermaid">
+                sequenceDiagram
+                    User ->> AppState: Initialize interaction
+                    AppState ->> Model: Select Language Model
+                    Model ->> Engine: Instantiate Text Generation Engine
+                    User ->> Engine: Request Suggestions
+                    Engine ->> Engine: Generate Prompts
+                    Engine ->> Model: Retrieve suggestions
+                    Model ->> AppState: Return suggestions (JSON)
+                    AppState ->> User: Update UI with suggestions
+                    User ->> Engine: Provide Edit Hint (optional)
+                    Engine ->> Model: Regenerate refined suggestions
+                    Model ->> AppState: Update suggestions
+            </div>
+            <p>This sequence shows the interaction flow from initial user interaction through the generation and refinement of communication suggestions.</p>
+        </section>
+    
+    </main>
+
+</body>
+</html>

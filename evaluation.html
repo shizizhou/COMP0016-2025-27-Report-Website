@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="requirements.html">Requirements</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="ui-design.html">UI Design</a></li>
+                <li class="dropdown">
+                    <a href="#">System Design</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                        <li><a href="system-design-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Implementation</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                        <li><a href="implementation-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="testing.html">Testing</a></li>
+                <li><a href="evaluation.html">Evaluation</a></li>
+                <li class="dropdown">
+                    <a href="#">Appendices ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                        <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                        <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                        <li><a href="monthly-videos.html">Monthly Videos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="summary of achievements">
+            <h1>MoSCoW achievement table</h1>
+            <h2>Phase1</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Requirement</th>
+                    <th>Priority</th>
+                    <th>State</th>
+                    <th>Contributors</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Have working GUI with AI response and textbox to enter keywords or prompt text</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>Nigel, Haocheng</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Be able to extract text from PDFs</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>Nigel</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Generate a suitable response using an offline LLM</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>Nigel, Neethesh, Haocheng, Zizhou</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Use RAG and vector database to search documents</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>Neethesh, Haocheng, Zizhou</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Chunk texts for easy retrieval and more understandable responses</td>
+                    <td>Should</td>
+                    <td>Yes</td>
+                    <td>Nigel</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Add support to choose from files or folders</td>
+                    <td>Should</td>
+                    <td>Yes</td>
+                    <td>Nigel</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Save history of previous responses</td>
+                    <td>Should</td>
+                    <td>Yes</td>
+                    <td>Haocheng</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Add support for Word documents</td>
+                    <td>Could</td>
+                    <td>Yes</td>
+                    <td>Haocheng</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Add support for Markdown files</td>
+                    <td>Could</td>
+                    <td>Yes</td>
+                    <td>Haocheng</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Add support for multi-column documents</td>
+                    <td>Could</td>
+                    <td>Yes</td>
+                    <td>Nigel, Neethesh</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Allow for Do-Not-Include items</td>
+                    <td>Could</td>
+                    <td>Yes</td>
+                    <td>Haocheng</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Filters and option to sort</td>
+                    <td>Could</td>
+                    <td>Yes</td>
+                    <td>Haocheng</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Be able to link to similar online resources/OneDrive for further study</td>
+                    <td>Could</td>
+                    <td>Partial (able to extract from OneDrive if already logged in on the system and download button is clicked)</td>
+                    <td>Haocheng, Nigel, Zizhou, Neethesh</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Add support for queries regarding images in documents</td>
+                    <td>Could</td>
+                    <td>No</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>	Add build-in helper page</td>
+                    <td>Could</td>
+                    <td>Yes</td>
+                    <td>Haocheng</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><strong>Key Functionalities (Must and Should):</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><strong>Optional Functionalities (Could):</strong></td>
+                    <td>81%</td>
+                </tr>
+            </table>
+            <h2>Phase2</h2>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Requirement</th>
+                    <th>Priority</th>
+                    <th>State</th>
+                    <th>Contributors</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Speech To Text working locally in browser</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>Haocheng</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Text To Speech working locally in browser</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>Neethesh, Nigel</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Use offline LLM to generate possible keywords</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>Zizhou</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Allow users to choose between offline/online models and STT models</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>Nigel</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Have suitable expression</td>
+                    <td>Should</td>
+                    <td>Yes</td>
+                    <td>Nigel, Neethesh, Haocheng, Zizhou</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Ensure that the LLM generates a wide array of responses based on mood</td>
+                    <td>Should</td>
+                    <td>Yes</td>
+                    <td>Zizhou</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Diarisation to discern between multiple speakers**</td>
+                    <td>Could</td>
+                    <td>Yes</td>
+                    <td>Haocheng</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Allow user to upload voice clips for voice cloning in the user’s own voice</td>
+                    <td>Could</td>
+                    <td>Partially (We are able to do the cloning of the voice by creating an embedding however, this is done using a python script rather than on the client side as per the initial requirements)</td>
+                    <td>Nigel, Neethesh</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Support real-time speech-to-text using Whisper with finalization for larger models**</td>
+                    <td>Could*</td>
+                    <td>Yes</td>
+                    <td>Haocheng</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><strong>Key Functionalities (Must and Should):</td>
+                    <td>100%</td>
+                </tr>
+                <tr>
+                    <td colspan="4"><strong>Optional Functionalities (Could):</strong></td>
+                    <td>83%</td>
+                </tr>
+            </table>
+            
+
+
+        
+            <p><em>* (Not in MoSCoW document but preferred by client as a research feature)</em></p>
+            <p><em>** (More research than feature; client does not expect them in the main branch)</em></p>
+        
+            <h3>Non-Functional Requirements (Both)</h3>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Requirement</th>
+                    <th>Priority</th>
+                    <th>State</th>
+                    <th>Contributors</th>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Be easily usable for patients</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>All</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Be easily perceivable and maintainable for future development</td>
+                    <td>Must</td>
+                    <td>Yes</td>
+                    <td>All</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Have minimal latency or wait times while using the app</td>
+                    <td>Should</td>
+                    <td>Yes</td>
+                    <td>All</td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Compile Windows exe(phase1)</td>
+                    <td>Should</td>
+                    <td>Yes</td>
+                    <td>All</td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Compile MacOS exec(phase1)</td>
+                    <td>Could</td>
+                    <td>Yes</td>
+                    <td>All</td>
+                </tr>
+            </table>
+            </section>
+            <section>
+                <h1>Known Bug List</h1>
+                <p>In this project, our team members use GitHub to update the project and fix bugs. Once a bug is discovered, a team member is assigned to identify the issue and find a solution. As a result, we have fixed almost all bugs that would seriously impact the user experience.                   </p>
+                <p>In the end, only two bugs remained unfixed:</p>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Which Part</th>
+                        <th>Known Bug</th>
+                        <th>Priority</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Phase 1</td>
+                        <td>The software is slow when handle uploading more than ten files at a time</td>
+                        <td>Low</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Phase 2</td>
+                        <td>For LLMs with size smaller than 1b, they may fail to output a vaild json answer</td>
+                        <td>Low</td>
+                </table>
+                <img src="images/github.png" alt="github">
+                <p>Bugfix commit on our GitHub project</p>
+            </section>
+            <section>
+                <h1>Individual contribution distribution table for Phase1</h1>
+                <table>
+                    <tr>
+                        <th>Work Packages</th>
+                        <th>Haocheng,Xu</th>
+                        <th>Mathews, Nigel</th>
+                        <th>Neethesh, Neethesh</th>
+                        <th>Zizhou, Shi</th>
+                    </tr>
+                    <tr>
+                        <td>UI Design</td>
+                        <td>50%</td>
+                        <td>50%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>LLM</td>
+                        <td>30%</td>
+                        <td>20%</td>
+                        <td>20%</td>
+                        <td>30%</td>
+                    </tr>
+                    <tr>
+                        <td>Database</td>
+                        <td>25%</td>
+                        <td>10%</td>
+                        <td>40%</td>
+                        <td>25%</td>
+                    </tr>
+                    <tr>
+                        <td>Testing</td>
+                        <td>40%</td>
+                        <td>20%</td>
+                        <td>20%</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>Overall</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                    </table>
+                <h1>Individual contribution distribution table for Phase2</h1>
+                    <table>
+                    <tr>
+                        <th>Work Packages</th>
+                        <th>Haocheng,Xu</th>
+                        <th>Mathews, Nigel</th>
+                        <th>Neethesh, Neethesh</th>
+                        <th>Zizhou, Shi</th>
+                    </tr>
+                    <tr>
+                        <td>UI Design</td>
+                        <td>15%</td>
+                        <td>70%</td>
+                        <td>0%</td>
+                        <td>15%</td>
+                    </tr>
+                    <tr>
+                        <td>LLM</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td>Text-To-Speech</td>
+                        <td>0%</td>
+                        <td>15%</td>
+                        <td>85%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Speech-To-Text</td>
+                        <td>100%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Testing</td>
+                        <td>40%</td>
+                        <td>20%</td>
+                        <td>20%</td>
+                        <td>20%</td>
+                    </tr>
+                    <tr>
+                        <td>Overall</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                    </table>
+                    <h1>Individual contribution distribution table for website</h1>
+                    <table>
+                    <tr>
+                        <th>Work Packages</th>
+                        <th>Haocheng,Xu</th>
+                        <th>Mathews, Nigel</th>
+                        <th>Neethesh, Neethesh</th>
+                        <th>Zizhou, Shi</th>
+                    </tr>
+                    <tr>
+                        <td>Home page</td>
+                        <td>0%</td>
+                        <td>100%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Requirement</td>
+                        <td>10%</td>
+                        <td>80%</td>
+                        <td>10%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Research</td>
+                        <td>20%</td>
+                        <td>20%</td>
+                        <td>20%</td>
+                        <td>40%</td>
+                    </tr>
+                    <tr>
+                        <td>System Design</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>100%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Implementation</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>100%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>UI Design</td>
+                        <td>50%</td>
+                        <td>50%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Testing</td>
+                        <td>100%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Evaluation</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>100%</td>
+                    </tr>
+                    <tr>
+                        <td>User Mannual</td>
+                        <td>100%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>GDPR & Privacy</td>
+                        <td>100%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Development Blog</td>
+                        <td>0%</td>
+                        <td>100%</td>
+                        <td>0%</td>
+                        <td>0%</td>
+                    </tr>
+                    <tr>
+                        <td>Monthly Videos</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                    </tr>
+                    <tr>
+                        <td>Overall</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                        <td>25%</td>
+                    </tr>
+                    </table>
+            <p>Note: Each task is not weighted equally, and as such the overall contribution numbers may not add up to the exact overall values.</p>
+            </section>
+            <section>
+                <h1>Critical Evaulation</h1>
+                <div class="testing-grid">
+                    <div class="testing-card">
+                      <div class="testing-header">
+                        <h5>Project management</h5>
+                      </div>
+                      <div class="testing-content">
+                      <p>Throughout all stages of the project, we used GitHub to update code and fix bugs. At the same time, we held weekly meetings with our client to provide progress updates. We also had a clear timeline, outlining the tasks we needed to complete each week.
+                        <p>In addition to coding, we regularly updated our research finding on the notion, sharing them to teammates and our client. These measures effectively helped us manage the project's progress, ensuring that we did not encounter any management issues until the end of the project.</p>
+                      </p>
+                      </div>
+                    </div>
+                    
+                    <div class="testing-card">
+                        <div class="testing-header">
+                          <h5>Functionality</h5>
+                        </div>
+                        <div class="testing-content">
+                        <p>In our Phase 1 project, users could upload PDF, DOCX, and Markdown (MD) files, covering the most common data types. Additionally, users could ask questions via the input box using their keyboard and add negative prompts to filter responses.</p>
+                        <p>In Phase 2, we introduced multiple input methods, including voice input and text input. Users could also modify responses in various ways, such as selecting keywords and adjusting the tone of the answers.</p>
+                        <p>Overall, I believe we successfully implemented the planned functionality.</p>
+                        </div>
+                      </div>
+
+                      <div class="testing-card">
+                        <div class="testing-header">
+                          <h5>Stability</h5>
+                        </div>
+                        <div class="testing-content">
+                        <p>We out great effort on the stability of our software. Throughout the project, we conducted tests to ensure that all softwares' functionalities worked properly.</p>
+                        <p>Additionally, we implemented various backup plans, such as regenerating responses when the answer did not match the requirements. These measures ensured that our software could run stably.</p>
+                        </div>
+                      </div>
+
+                      <div class="testing-card">
+                        <div class="testing-header">
+                          <h5>Efficiency</h5>
+                        </div>
+                        <div class="testing-content">
+                        <p>To ensure that our product is compatible with most users' device, we adopted the most cost-effective plan in both model and solution selection.</p>
+                        <p>For example, we chose the model that performed best under the lowest requirements as our final solution and used quantized version to minimize memory usage. Additionally, we use a specialized embedding model to handle data embedding task, ensuring that our project achieves optimal performance with minimal resource consumption.</p>
+                        </div>
+                      </div>
+                    
+                      <div class="testing-card">
+                        <div class="testing-header">
+                          <h5>Compatibility</h5>
+                        </div>
+                        <div class="testing-content">
+                        <p>Our project fully takes into account the performance of all users' devices, ensuring that it can run on as many devices as possible. both our Phase 1 and Phase 2 projects offer Windows and Mac versions and support hardware acceleration across all platforms, ensuring that users can run our software smoothly. </p>
+                        <p>In Phase 1, we adopted a combination of a 3B model and a lightweight embedding model, with a total memory requirement of no more than 16GB, ensuring that it could run on most mainstream devices with 16GB of RAM.</p>
+                        <p>In Phase 2, we provided users with three model options: 8B, 3B, and OpenAI API. If the user's device has lower performance, such as a mobile device or an older computer, they can choose to run the 3B model or use OpenAI's API. While if the user's device has better performance and they want better use experience, they can choose the 8B model.</p>
+                        </div>
+                      </div>
+
+                      <div class="testing-card">
+                        <div class="testing-header">
+                          <h5>Maintainability</h5>
+                        </div>
+                        <div class="testing-content">
+                        <p>For our project's maintainability, we have structured our code by writing separate functions for different features, making it easier to modify and update specific functionalities without affecting the entire system. This modular approach enhances the readability and scalability of our code. </p>
+                        <p>However, one drawback is that bug fixes and patches were not well managed. Some patches were added without proper documentation or organization, which could lead to difficulties in tracking and maintaining in the long run.</p>
+                        <p>Overall, we think we did a good job in Project maintainability, but we also have some drawback that can be improved in future project.</p>
+                        </div>
+                      </div>
+
+                  </div>
+                  <div class="testing-card full-width">
+                    <div class="testing-header">
+                      <h5>User experience</h5>
+                    </div>
+                    <div class="testing-content">
+                    <p>During the project showcase day, we demonstrated our demo to many guests and recorded their user experiences and suggestions. Many users were amazed by our product and found it very useful. Of course, we also received some suggestions for improvement.</p>
+                    <p>One particularly valuable suggestion was whether our project could be integrated with visual input devices, such as eye-tracking technology, to help users input their thoughts more quickly. This is especially relevant because our target users typically have mobility disabilities. While our product helps reduce the amount of input required, entering keywords can still be quite challenging for them. This suggestion is very useful and has provided inspiration for our future plans.</p>
+                        <img src="images/user.png" alt="user">
+                        <p>picture taken with the guests</p>
+                      
+                    </div>
+                  </div>
+
+            </section>
+            <section>
+                <h1>Future Work</h1>
+                <h3>Integration with Visual Input Devices</h3>
+                <p>One particularly valuable improvement we plan to test is the integration of our project with visual input devices, such as eye-tracking technology. This would allow users to input their thoughts faster. This feature is especially important because our target users often have mobility disabilities, making traditional input methods challenging. While our product already helps reduce the amount of input required, entering keywords can still be difficult for some users. By incorporating visual input technology, we aim to make our product more accessible, efficient, and user-friendly for those who need it most.</p>
+                <h3>Expanding Compatibility Across More Devices</h3>
+                <p>We aim to optimize our project for more devices, particularly mobile devices. This will ensure that users can run the software on a wider range of hardware, improving accessibility and flexibility.</p>
+                <h3>Embedding voice on client side</h3>
+                <p>The initial plan to completely have voice cloning on the client side was hindered by difficulty and complexities in creating a transformers pipeline for the voice embedding models. Hence in the future with more research and knowledge in this field, we plan to integrate the voice embedding to the client side through creating a transformers pipeline.</p>
+                <h3>Third-Party Software Integration</h3>  
+                <p>We plan to integrate our project with third-party applications, such as WhatsApp. This will enable users to access and use our software directly within their chat apps, eliminating the need to open a separate application. This seamless integration will enhance user convenience and improve the overall experience.</p>
+            </section>
+    </main>
+
+    
+
+</body>
+</html>

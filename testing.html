@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Testing</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1></h1>
+    <nav>
+      <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="requirements.html">Requirements</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="ui-design.html">UI Design</a></li>
+          <li class="dropdown">
+            <a href="#">System Design</a>
+            <ul class="dropdown-menu">
+                <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                <li><a href="system-design-phase-2.html">Phase 2</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#">Implementation</a>
+            <ul class="dropdown-menu">
+                <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                <li><a href="implementation-phase-2.html">Phase 2</a></li>
+            </ul>
+          </li>
+          <li><a href="testing.html">Testing</a></li>
+          <li><a href="evaluation.html">Evaluation</a></li>
+          <li class="dropdown">
+              <a href="#">Appendices ▼</a>
+              <ul class="dropdown-menu">
+                  <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                  <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                  <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                  <li><a href="monthly-videos.html">Monthly Videos</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+  <main>
+    <section id="title">
+    <h2>Testing Both Experiments</h2>
+    <p>
+      Our project has two experiments:
+    </p>
+      <li>OfflineLLM powered literature review tool with UCL GDIHUB(short 1 month project)</li>
+      <li>Offline LLM with Ossia voice (our main focus)</li>
+    </section>
+    
+    <!-- Experiment 1 -->
+    <section id="Offline-LLM powered literature review tool with UCL GDIHUB">
+      <h3>Experiment 1: Offline-LLM powered literature review tool with UCL GDIHUB</h3>
+
+      <section id="exp1-testing-strategy">
+        <h4>Testing Strategy</h4>
+        <p>
+          Our testing approach is multi-layered to make sure everything works smoothly—from individual parts 
+          to the entire system under pressure. </p>
+        <p>
+          We start with unit tests to check each component, 
+          then move on to client (integration) tests that mimic real user interactions, and finally, 
+          we perform stress tests to see how the system behaves under heavy load. 
+          This process helps us catch problems early, confirm that all parts work well together, 
+          and ensure the system remains reliable even extreme usage (50+ documents loaded), multiple open and close.
+        </p>
+      </section>
+
+      <section id="exp1-unit-integration" class="testing-section">
+        <h4>Unit and Integration Testing</h4>
+        
+        <div class="testing-grid">
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>❓</span>
+              <h5>Purpose</h5>
+            </div>
+            <div class="testing-content">
+            <p>The unit test is used on the database.py segment to ensure:</p>
+            <ul>The database could be cleared and reloaded with new data.</ul>
+            <ul> The database could be queried with the RAG model.</ul>
+            <ul>The database could be high-efficient to avoid duplication.</ul>
+            </div>
+          </div>
+          
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>🔧</span>
+              <h5>Testing Tools</h5>
+            </div>
+            <div class="testing-content">
+              <ul>
+                <li>Python unittest framework</li>
+                <li>Mocking libraries</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📚</span>
+            <h5>Methodology</h5>
+          </div>
+          <div class="testing-content">
+            <p>Run all tests using command pytest tests.</p>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📊</span>
+            <h5>Results</h5>
+          </div>
+          <div class="testing-content">
+            <p>All 6 tests are passed.</p>
+          </div>
+        </div>
+        
+        <div class="conclusion-box">
+          <h5><span>💡</span> Analysis & Conclusion</h5>
+          <p>This test is the baseline for all the developments by making sure the data loaded into the db is correct</p>
+        </div>
+      </section>
+
+      <section id="exp1-compatibility" class="testing-section">
+        <h4>Compatibility Testing</h4>
+        
+        <div class="testing-grid">
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>❓</span>
+              <h5>Purpose</h5>
+            </div>
+            <div class="testing-content">
+              <p>To ensure our offline RAG system operates consistently across various operating systems and environments, making it accessible to all potential users regardless of their platform.</p>
+            </div>
+          </div>
+          
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>🔧</span>
+              <h5>Testing Tools</h5>
+            </div>
+            <div class="testing-content">
+              <ul>
+                <li>Machines with different OS configurations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📚</span>
+            <h5>Methodology</h5>
+          </div>
+          <div class="testing-content">
+            <p>We established a systematic testing protocol across multiple environments:</p>
+            <ul>
+              <li>Deployed and tested the application on Windows, MacOS</li>
+              <li>Verified functionality with multiple Python versions</li>
+              <li>The Windows machines are running WIN11 23H2/24H2 machines with RTX4060 + 32G of RAM</li>
+              <li>The MacOS machines are running MacOS 15.3 with M4 PRO 24G and M4 MAX 48G.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📊</span>
+            <h5>Results</h5>
+          </div>
+          <div class="testing-content">
+            <p>The application demonstrated consistent functionality across all tested platforms with only minor differences:</p>
+            <ul>
+              <li>Successfully ran on Windows, MacOS</li>
+              <li>Compatible with all tested Python versions</li>
+              <li>Documentation updated with detailed installation requirements</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="conclusion-box">
+          <h5><span>💡</span> Analysis & Conclusion</h5>
+          <p>Cross-platform compatibility was successfully achieved, ensuring our solution is accessible to researchers regardless of their operating system preference. The application demonstrated consistent behavior and performance across all tested environment.</p>
+        </div>
+      </section>
+
+      <section id="exp1-responsive" class="testing-section">
+        <h4>Responsive Design Testing</h4>
+        
+        <div class="testing-grid">
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>❓</span>
+              <h5>Purpose</h5>
+            </div>
+            <div class="testing-content">
+              <p>To ensure the user interface adapts appropriately to different screen sizes and resolutions, providing an optimal experience across various display configurations.</p>
+            </div>
+          </div>
+          
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>🔧</span>
+              <h5>Testing Tools</h5>
+            </div>
+            <div class="testing-content">
+              <ul>
+                <li>Screen recording software</li>
+                <li>Various display resolutions and aspect ratios</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📚</span>
+            <h5>Methodology</h5>
+          </div>
+          <div class="testing-content">
+            <p>We implemented and tested adaptive UI features through:</p>
+            <ul>
+              <li>Testing the application at various screen sizes from 1080P to 2.5K resolution</li>
+              <li>Verifying proper element repositioning during window resizing</li>
+              <li>Ensuring UI elements remain accessible and functional at all sizes,</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📊</span>
+            <h5>Results</h5>
+          </div>
+          <div class="testing-content">
+            <p>The responsive design features performed effectively:</p>
+            <ul>
+              <li>UI successfully adapted to all tested window sizes</li>
+              <li>Elements maintained proper proportions and accessibility</li>
+              <li>Text remained readable across all display configurations</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="conclusion-box">
+          <h5><span>💡</span> Analysis & Conclusion</h5>
+          <p>The implementation of adaptive UI successfully ensures that our application provides a consistent user experience regardless of display size or resolution. This feature is particularly valuable for researchers who may use the tool across different devices or in varied workspace configurations.</p>
+        </div>
+      </section>
+
+      <section id="exp1-user-acceptance" class="testing-section">
+        <h4>User Acceptance Testing</h4>
+        
+        <div class="testing-grid">
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>❓</span>
+              <h5>Purpose</h5>
+            </div>
+            <div class="testing-content">
+              <p>To validate that our offline RAG system meets the actual needs of researchers and effectively supports their literature review workflows in real-world scenarios. This testing phase confirms that the system delivers value to end users and identifies any usability improvements before final deployment.</p>
+            </div>
+          </div>
+          
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>👥</span>
+              <h5>Testers</h5>
+            </div>
+            <div class="testing-content">
+              <ul>
+                <li>UCL GDIHUB researchers as actual user</li>
+                <li>Year 2 students as simulated user</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="feedback-box">
+          <h5></span> Client Feedback</h5>
+          <p>The clients expressed high satisfaction with both the operation and precision of the entire workflow.</p>
+          <div class="quote">
+            <blockquote>"The system efficiently handled our needs while maintaining excellent response accuracy."</blockquote>
+          </div>
+        </div>
+        
+        <div class="testing-details">
+          <h5>Detailed Analysis</h5>
+          <p>The user acceptance testing was conducted with researchers from UCL GDIHUB, who simulated real-world usage of the system. 
+          The test cases covered the full workflow, from adding documents to the database, applying and managing filter items, 
+          querying the system using retrieval-augmented generation (RAG), verifying the results, and exporting or deleting data.</p>
+          
+          <p>Throughout the testing process, simulated researchers interacted with the system as intended users, assessing usability, accuracy, 
+          and overall system performance. The testing confirmed that the system efficiently handled document management and filtering, 
+          provided precise and relevant responses to queries, and maintained stability during data operations.</p>
+          
+          <p>Based on feedback, clients expressed satisfaction with both the functionality. No major issues 
+          were reported, but minor suggestions were made for UI improvements to enhance the user experience. These insights has been Deployed of the system to refine usability further.</p>
+        </div>
+        
+        <div class="next-steps">
+          <h5>Next Steps</h5>
+          <p>Based on feedback, we have implemented the following improvements:</p>
+          <ul>
+            <li>Enhanced UI </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="exp1-stress" class="testing-section">
+        <h4>Stress Testing</h4>
+        
+        <div class="testing-grid">
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>❓</span>
+              <h5>Purpose</h5>
+            </div>
+            <div class="testing-content">
+              <p>To evaluate stability under heavy load conditions, ensuring the offline RAG system can handle extensive document.</p>
+            </div>
+          </div>
+          
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>🔧</span>
+              <h5>Testing Tools</h5>
+            </div>
+            <div class="testing-content">
+              <ul>
+                <li>Memory profiler</li>
+                <li>Large document corpus (50+ academic papers)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📚</span>
+            <h5>Methodology</h5>
+          </div>
+          <div class="testing-content">
+            <p>We conducted systematic stress testing through:</p>
+            <ul>
+              <li>Loading progressively larger document collections (5, 20, 50+ documents)</li>
+              <li>Monitoring memory usage during extended operation periods</li>
+              <li>Testing with lengthy documents</li>
+              <li>Simulating user interactions in quick succession</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📊</span>
+            <h5>Results</h5>
+          </div>
+          <div class="testing-content">
+            <p>Stress testing revealed:</p>
+            <ul>
+              <li>Successfully handled 50+ documents without significant performance degradation</li>
+              <li>Memory usage remained within acceptable bounds during extended sessions</li>
+              <li>No critical failures occurred during intensive testing scenarios</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="conclusion-box">
+          <h5><span>💡</span> Analysis & Conclusion</h5>
+          <p>The stress testing confirmed that our offline RAG system can reliably handle the document volumes and usage patterns expected in real-world research scenarios. </p>
+        </div>
+      </section>
+    </section>
+    
+    
+    <!-- Experiment 2 -->
+    <section id="experiment2 Offline LLM with Ossia voice">
+      <h3>Experiment 2: Offline LLM with Ossia voice</h3>
+
+      <section id="exp2-testing-strategy">
+        <h4>Testing Strategy</h4>
+        <p>
+          Our testing for the Ossia Voice project follows a comprehensive approach that addresses both technical functionality and user experience. We focus on validating the single subsystem (SST TTS LLM) before moving to overall testing.
+        </p>
+      </section>
+
+      <section id="exp2-unit-integration" class="testing-section">
+        <h4>Unit and Integration Testing</h4>
+        
+        <div class="testing-grid">
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>❓</span>
+              <h5>Purpose</h5>
+            </div>
+            <div class="testing-content">
+              <p>To verify that individual components of the Ossia voice system function correctly and work together seamlessly, ensuring reliability of the core offline speech processing functionality.</p>
+            </div>
+          </div>
+          
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>🔧</span>
+              <h5>Testing Tools</h5>
+            </div>
+            <div class="testing-content">
+              <ul>
+                <li>Browser console</li>
+                <li>Debugging windows in form of vue component</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📚</span>
+            <h5>Methodology</h5>
+          </div>
+          <div class="testing-content">
+            <p>Our testing methodology included:</p>
+            <ul>
+              <li>Tests for speech processing modules</li>
+              <li>Test for offline LLM response</li>
+              <li>Integration tests from end to end</li>
+
+            </ul>
+            <p>Tests were run by all team memebrs as well as external testers since LLM and speech recognition response is unpreditable</p>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📊</span>
+            <h5>Results</h5>
+          </div>
+          <div class="testing-content">
+            <p>Testing results demonstrated:</p>
+            <ul>
+              <li>All core modules passed manual verification of results</li>
+              <li>Integration points between components work correctly</li>
+              <li>Edge cases identified and addressed and errors are handled correctly</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="conclusion-box">
+          <h5><span>💡</span> Analysis & Conclusion</h5>
+          <p>The unit and integration testing confirmed that our offline LLM powered ossia system functions reliably across all core components. Minor issues were identified and resolved during the testing process, ensuring a stable foundation for the user acceptance phase.</p>
+        </div>
+      </section>
+
+      <section id="exp2-compatibility" class="testing-section">
+        <h4>Compatibility Testing</h4>
+        
+        <div class="testing-grid">
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>❓</span>
+              <h5>Purpose</h5>
+            </div>
+            <div class="testing-content">
+              <p>To ensure the Ossia voice system works consistently across different operating systems, hardware configurations and different needs.</p>
+            </div>
+          </div>
+          
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>🔧</span>
+              <h5>Testing Tools</h5>
+            </div>
+            <div class="testing-content">
+              <ul>
+                <li>Multiple hardware configurations</li>
+                <li>Various operating systems (Windows, macOS)</li>
+                <li>Different assistive input devices(screen keyboard,touchpad and mocked use of eye tracking devices)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📚</span>
+            <h5>Methodology</h5>
+          </div>
+          <div class="testing-content">
+            <p>We conducted compatibility testing across:</p>
+            <ul>
+              <li>Windows 10/11 and macOS environments</li>
+              <li>Systems with various CPU/GPU configurations</li>
+              <li>Trial with common assistive input technologies</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📊</span>
+            <h5>Results</h5>
+          </div>
+          <div class="testing-content">
+            <p>Compatibility testing revealed:</p>
+            <ul>
+              <li>Successful operation across all tested operating systems</li>
+              <li>Compatible with standard assistive input devices</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="conclusion-box">
+          <h5><span>💡</span> Analysis & Conclusion</h5>
+          <p>The system demonstrated good compatibility across different environments, the whole system was established to ensure adequate speech processing and offline-LLM performance.</p>
+        </div>
+      </section>
+
+      <section id="exp2-responsive" class="testing-section">
+        <h4>Responsive Design Testing</h4>
+        
+        <div class="testing-grid">
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>❓</span>
+              <h5>Purpose</h5>
+            </div>
+            <div class="testing-content">
+              <p>To ensure the Ossia voice application interface adapts acceptablly to different screen sizes and resolutions, providing an accessible experience for users working on regular desktop and laptops.</p>
+            </div>
+          </div>
+          
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>🔧</span>
+              <h5>Testing Tools</h5>
+            </div>
+            <div class="testing-content">
+              <ul>
+                <li>Browser DevTools</li>
+                <li>Various physical devices (Windows tablets, Windows and Mac laptops,  Windows desktops)</li>
+                <li>Screen recording for further analysis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📚</span>
+            <h5>Methodology</h5>
+          </div>
+          <div class="testing-content">
+            <p>Our responsive design testing approach included:</p>
+            <ul>
+              <li>Testing the application across multiple screen sizes from 1080p to 4K resolution</li>
+              <li>Verifying button and interactive element sizing for accessibility on chrome based browsers</li>
+              <li>Ensuring critical interface components stay in place</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📊</span>
+            <h5>Results</h5>
+          </div>
+          <div class="testing-content">
+            <p>The responsive design testing showed:</p>
+            <ul>
+              <li>Interface successfully adapted to all tested screen sizes</li>
+              <li>Targets and UI maintained suitable size for users with motor impairments</li>
+              <li>Text and speech controls and inputs remained accessible across all tested devices</li>
+              <li>Microsoft edge for MacOS Version 134.0.3124.68 has bugs on personal accounts downloading files (while is working fine using school microsoft account), instruction is given to end user to reset their settings or switch to google chrome</li>            </ul>
+          </div>
+        </div>
+        
+        <div class="conclusion-box">
+          <h5><span>💡</span> Analysis & Conclusion</h5>
+          <p>Our responsive design testing confirmed that the Ossia voice application provides consistent accessibility across different devices and screen resolutions. This is particularly important for users with NMDs who may use various devices depending on their environment and care situation. The adaptable interface ensures that users can effectively communicate with their loves and friends.</p>
+        </div>
+      </section>
+    </section>
+
+      
+
+      <section id="exp2-user-acceptance" class="testing-section">
+        <h4>User Acceptance Testing</h4>
+        
+        <div class="testing-grid">
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>❓</span>
+              <h5>Purpose</h5>
+            </div>
+            <div class="testing-content">
+              <p>To validate that the offline Ossia voice system meets the needs of people with NMDs, providing an accessible and effective communication tool without requiring OPENAI API subscriptions.</p>
+            </div>
+          </div>
+          
+          <div class="testing-card">
+            <div class="testing-header">
+              <span>👥</span>
+              <h5>Testers</h5>
+            </div>
+            <div class="testing-content">
+              <ul>
+                <li>Simulated users with motor neuron disease(with certain body parts fixed)</li>
+                <li>Accessibility specialists</li>
+                <li>Regular testers simulating patient's loved ones and friends</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📚</span>
+            <h5>Methodology</h5>
+          </div>
+          <div class="testing-content">
+            <p>User testing was conducted with:</p>
+            <ul>
+              <li>Guided setup to validate the setup procedure</li>
+              <li>Good accessibility and response that could generate suitable words</li>
+              <li>Feedback collection through interviews and questionnaires</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="testing-card full-width">
+          <div class="testing-header">
+            <span>📊</span>
+            <h5>Results</h5>
+          </div>
+          <div class="testing-content">
+            <p>User feedback revealed:</p>
+            <ul>
+              <li>High satisfaction with the offline-LLM functionality</li>
+              <li>Positive response to voice quality and naturalness</li>
+              <li>Appreciation for the elimination of API costs</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="conclusion-box">
+          <h5><span>💡</span> Analysis & Conclusion</h5>
+          <p>User acceptance testing confirmed that our offline-llm solution successfully addresses the original goal of making 
+            Ossia Voice accessible without API dependencies. 
+            The system provides similar quality to online solutions while eliminating subscription costs, 
+            which was particularly valued by users who depend on the system for daily communication.</p>
+        </div>
+      </section>
+
+
+    
+  </main>
+</body>
+</html>

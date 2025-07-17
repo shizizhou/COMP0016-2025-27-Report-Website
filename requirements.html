@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Requirements</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="requirements.html">Requirements</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="ui-design.html">UI Design</a></li>
+                <li class="dropdown">
+                    <a href="#">System Design</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                        <li><a href="system-design-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Implementation</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                        <li><a href="implementation-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="testing.html">Testing</a></li>
+                <li><a href="evaluation.html">Evaluation</a></li>
+                <li class="dropdown">
+                    <a href="#">Appendices ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                        <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                        <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                        <li><a href="monthly-videos.html">Monthly Videos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <section id="introduction">
+        <h2>Partner Introduction & Project Background</h2>
+        <p>
+            For Phase 1, we are working with GDIHUB. Through discussions with our project partners at GDIHUB, we decided that the best way to approach phase 1 would be to create a RAG system in the form of a chatbot, that would be able to mine local documents for answers to research questions. This would allow for a much wider array of queries to be asked and responded to. Our partner for phase 2 is Ossia Voice. Ossia Voice is an accessibility tool for Augmentative and Alternative Communication. It helps people who are unable to speak and also have significant difficulty with motion. For example, people with Motor Neurone Disease. The current version of Ossia uses the OpenAI API. This results in users racking up charges from API use, cutting it off to many people due to their socioeconomic background. We want to be able to first create an offline literature review tool, so that we can review and evaluate various different speech engines. We then use our research to be able to fine-tune and evaluate various necessary models. At the end of the project, we hope to have a solution that works free of the need of any API keys. Hence, making the Ossia Voice Project available to a much wider array of users.
+        </p>
+    </section>
+
+    <section id="goals">
+        <h2>Project Goals</h2>
+        <ul>
+            <li>Create an efficient literature review tool to review and report on key speech engines and their evaluations.</li>
+            <li>Use research gathered to modify Ossia Voice so that its user can use offline models instead of relying on OpenAI.</li>
+            <li>Research, evaluate and test various LLMs, Text-To-Speech and Speech-To-Text models and make an informed decision to ensure proper integration.</li>
+            <li>Implement the above into the existing Ossia Voice solution, ensuring that the system is accessible, efficient, maintainable and user-friendly.</li>
+        </ul>
+    </section>
+    
+
+    <section id="requirement-gathering">
+        <h2>Requirement Gathering</h2>
+        <h3>How We Collected Requirements</h3>
+        <p>
+            We collected requirements through stakeholder interviews, user feedback, and 
+            competitor analysis. A survey was conducted to understand the needs of potential users.
+        </p>
+
+        <h3>Survey Analysis</h3>
+        <p>
+            The survey gathered insights from a patient with Motor Neurone Disease (MND) and 
+            their caretaker. Their feedback helped us identify the key challenges in using 
+            assistive communication technologies.
+        </p>
+    </section>
+
+    <section id="survey-results">
+        <h2>Survey Results</h2>
+
+        <h3>From a Patient with Motor Neurone Disease (MND)</h3>
+        <div class="survey-box">
+            <p><strong>Challenges in using technology for communication:</strong></p>
+            <p>“One of the biggest challenges is the physical strain it takes to use a keyboard or touch screen for long periods. My muscle control is limited, so even small tasks like typing or moving a mouse can be exhausting.”</p>
+            
+            <p><strong>Current interaction and desired improvements:</strong></p>
+            <p>“I use a voice recognition tool and sometimes an eye-tracking system. The voice recognition isn’t always accurate because my speech can be slurred. The eye-tracking works better, but it sometimes feels slow. I think better calibration or predictive text that truly understands context would help.”</p>
+
+            <p><strong>Situations where communication is difficult and possible solutions:</strong></p>
+            <p>“When I’m tired, everything becomes harder. In these moments, I wish the system would adapt to my energy or mood levels, maybe by offering simpler commands or allowing me to save commonly used phrases for faster responses.”</p>
+
+            <p><strong>Ideal communication tool features:</strong></p>
+            <p>“It would be a device that is fully hands-free, maybe controlled by my eye movements or brain signals. It would be smart enough to understand the context of conversations and offer suggestions. It would also be lightweight and portable so I could use it anywhere.”</p>
+
+            <p><strong>Effort required to use current devices:</strong></p>
+            <p>“It takes a lot of effort. On a good day, I can manage, but on bad days, even simple things feel overwhelming. Sometimes I avoid using them just because of how draining it is, and that makes me feel isolated. I need something that requires less energy to operate to make communication easier for me.”</p>
+        </div>
+
+        <h3>From a Caretaker of a Person with MND</h3>
+        <div class="survey-box">
+            <p><strong>Challenges observed in communication:</strong></p>
+            <p>“I see them struggling with accuracy. Sometimes it takes multiple tries to get the technology to understand them, whether it’s their voice or using the eye-tracker. This leads to a lot of frustration, especially during longer conversations.”</p>
+
+            <p><strong>Key features that would reduce frustration:</strong></p>
+            <p>“It needs to be faster and more intuitive. A predictive feature that learns their most common words and phrases would help, so they don’t have to type everything out. And it should be responsive without needing constant recalibration.”</p>
+
+            <p><strong>Situations where current tools fail:</strong></p>
+            <p>“In emergencies, when they need to communicate something urgent, the current tools just aren’t fast enough. We need something that allows them to alert me immediately, without any delays or effort on their part.”</p>
+
+            <p><strong>Role in assisting communication and improvements needed:</strong></p>
+            <p>“I help set up the devices, make sure they’re charged and calibrated, and troubleshoot when something goes wrong. Sometimes, I also help by selecting phrases for them when they’re too tired to use the device. It would help if the devices were more automated, so they didn’t need as much manual setup." </p>
+
+            <p><strong>Making communication tools more intuitive:</strong></p>
+            <p>“Something that works consistently without much intervention would be ideal. If it could recognise their voice or eye movements more reliably, it would reduce the need for me to step in as much. A tool that offers more autonomy to them, even on bad days, would make a big difference in both of our lives.”</p>
+        </div>
+    </section>
+
+    <section id="personas">
+        <h2>User Personas</h2>
+    
+        <div class="persona">
+            <img src="images/persona1.png" alt="Persona 1 - Patient with MND">
+            <div class="persona-description">
+                <h3>Persona 1: Charles Lewis</h3>
+                <p> Charles was an intelligent software developer who was known to be very open and conversational. However, that all changed since he was diagnosed with Motor Neurone Disease (MND). Over time, Charles' speech abilities deteriorated very quickly. Furthermore, he has also found other text-to-speech tools very difficult to use since his ability to type has also become very exhausting for him due to his deteriorating motor skills. Previosuly very social, nowadays Charles often feels like an afterthought at social events which has led to him feeling isolated and depressed. Charles is seeking software that will help him to be able to communicate with his friends and family whilst also requiring minimal typing. Charles is also not in the greatest financial situation since he has had to quit his job and is currently surviving off of savings and his disability benefits. As a result, he requires software that will not force him to have to rack up many charges and ideally be free to use. Charles has found the new Ossia Voice to be a revolution in his day-to-day life. Charles had previously used an OpenAI API and was very impressed with the software. However, he couldn't continue using it due to financial constraints. With the option to use offline models, and since Charles has access to a good quality device from his software engineering days, he was able to use a high-performing model. This resulted in him being able to massively improve his social life, almost to how it was pre-diagnosis. He also made use of the voice cloning mechanism and many of his friends have commented saying that they feel like they have Charles back rather than previously feeling like they were still talking to a machine. It has massively improved his mental health and wellbeing whilst also removing his previous feelings of isolation.</p>
+            </div>
+        </div>
+    
+        <div class="persona">
+            <img src="images/persona2.png" alt="Persona 2 - Caregiver">
+            <div class="persona-description">
+                <h3>Persona 2: Grace Patel</h3>
+                <p>Grace is an elderly lady who is a former teacher. She used to be described by friends as a "social butterfly". However, a few years ago she was diagnosed with a muscle disorder causing her to have reduced mobility and speaking abilities. Grace has a caregiver who helps her with her daily tasks. She has found that the current text-to-speech tools are not very intuitive and require a lot of manual setup. Grace's caregiver has also found that the current tools are not very reliable and often require her to step in and help Grace. Grace is looking for a tool that will help her to communicate with her friends and family more easily and without the need for constant recalibration or having to rely on her caregiver as much. Grace was astounded at the extents the Ossia Software we produced could reach. Since, she is not very technical. She found the large and easy to use menu very inviting whilst also being clear to see without her glasses. She found it very simple and since the offline models produce what she wants to say most of the time, she hardly has to type in any words. Grace has mentioned that because of this, she hasn't had to rely on her caregiver as much and our software has helped her to get her independence back. Additionally, with Grace being a former teacher. She also tried out our RAG document miner tool. As a former educator, she had a strong affinity for organising and accessing information quickly. The tool allowed her to easily extract and reference key documents, enhancing her communication and helping her reconnect with the wealth of knowledge she’d accumulated over the years. She also mentioned that due to the simple and intuitive user interface she found it very easy to use despite her accessibility issues.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="use-cases">
+        <h2>Use Cases</h2>
+
+        <!-- Phase 1 Use Case Diagram -->
+        <h3>Use Case Diagram - Phase 1</h3>
+        <img src="images/phase1_usecases.png" alt="Use Case Diagram for Phase 1" class="centred-image">
+    
+        <!-- Phase 1 Use Case List -->
+        <h3>Use Case List - Phase 1</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Use Case</th>
+                <th>Actor/User</th>
+            </tr>
+            <tr>
+                <td>UC1</td>
+                <td>Upload Documents</td>
+                <td>Researcher</td>
+            </tr>
+            <tr>
+                <td>UC2</td>
+                <td>Query information from uploaded documents</td>
+                <td>Researcher</td>
+            </tr>
+            <tr>
+                <td>UC3</td>
+                <td>Reset Database</td>
+                <td>Researcher</td>
+            </tr>
+            <tr>
+                <td>UC4</td>
+                <td>Save and Retrieve Response History</td>
+                <td>Researcher</td>
+            </tr>
+        </table>
+    
+        <!-- Phase 1 Use Case Descriptions -->
+        <h3>Use Case Descriptions - Phase 1</h3>
+    
+        <table>
+            <tr><th>ID</th><th>Actor</th><th>Description</th><th>Main Flow</th><th>Result</th></tr>
+    
+            <tr>
+                <td>UC1</td>
+                <td>Researcher</td>
+                <td>Upload documents</td>
+                <td>
+                    Researcher selects a document and uploads it. If the file format is valid, the system stores it in its database.
+                    Otherwise, an error is displayed. The document is then indexed for future queries.
+                </td>
+                <td>Document is successfully uploaded and ready for search.</td>
+            </tr>
+    
+            <tr>
+                <td>UC2</td>
+                <td>Researcher</td>
+                <td>Query information from uploaded documents</td>
+                <td>
+                    Researcher enters a query. System searches indexed documents and returns relevant information. 
+                    If no results are found, the user is prompted to refine the query.
+                </td>
+                <td>Relevant information is displayed to the researcher.</td>
+            </tr>
+
+            <tr>
+                <td>UC3</td>
+                <td>Researcher</td>
+                <td>Reset Database</td>
+                <td>
+                    Researcher selects the "Delete Database" option and confirms the action. If confirmed, the system clears all data. Chatbot will no longer be able to access previously uplaoded documents.
+                </td>
+                <td>Database is cleared and ready for new uploads.</td>
+            </tr>
+    
+            <tr>
+                <td>UC4</td>
+                <td>Researcher</td>
+                <td>Save and retrieve response history</td>
+                <td>
+                    Researcher can choose to export the conversation by clicking the "Export Chat" button. This saves the entire chat as .txt file in the folder of their choice.
+                </td>
+                <td>Past responses are accessible for future reference.</td>
+            </tr>
+        </table>
+
+        <!-- Phase 2 Use Case Diagram -->
+        <h3>Use Case Diagram - Phase 2</h3>
+        <img src="images/phase2_usecases.png" alt="Use Case Diagram for Phase 2" class = "centred-image">
+    
+        <!-- Phase 2 Use Case List -->
+        <h3>Use Case List - Phase 2</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Use Case</th>
+                <th>Actor/User</th>
+            </tr>
+            <tr>
+                <td>UC5</td>
+                <td>Holds mic to hear other people</td>
+                <td>Patient/Caregiver</td>
+            </tr>
+            <tr>
+                <td>UC6</td>
+                <td>Chooses appropriate response to the person</td>
+                <td>Patient/Caregiver</td>
+            </tr>
+            <tr>
+                <td>UC7</td>
+                <td>Upload Voice Clips for Voice Cloning</td>
+                <td>Caregiver</td>
+            </tr>
+            <tr>
+                <td>UC8</td>
+                <td>Can edit the possible responses by inputting keywords</td>
+                <td>Patient/Caregiver</td>
+            </tr>
+        </table>
+    
+        <!-- Phase 2 Use Case Descriptions -->
+        <h3>Use Case Descriptions - Phase 2</h3>
+    
+        <table>
+            <tr><th>ID</th><th>Actor</th><th>Description</th><th>Main Flow</th><th>Result</th></tr>
+    
+            <tr>
+                <td>UC5</td>
+                <td>Patient/Caregiver</td>
+                <td>Holds mic to hear other people</td>
+                <td>
+                    The user activates the microphone. The system processes incoming sound and enhances it for clarity. Converts this speech into text and displays it in the chat window.
+                    If the mic is not detected, an error is displayed.
+                </td>
+                <td>Audio is captured and is converted to text for the user to be able to read on the screen.</td>
+            </tr>
+    
+            <tr>
+                <td>UC6</td>
+                <td>Patient/Caregiver</td>
+                <td>Chooses appropriate response to the person</td>
+                <td>
+                    The system provides response options. The user selects a response. If the selection needs modification, 
+                    the user can edit it before confirming. The chosen response is converted to speech and played back to the other person.
+                </td>
+                <td>The chosen response is communicated to the other person.</td>
+            </tr>
+    
+            <tr>
+                <td>UC7</td>
+                <td>Caregiver</td>
+                <td>Upload Voice Clips for Voice Cloning</td>
+                <td>
+                    The caregiver selects and uploads a voice clip. The system processes and stores the clip for cloning. The voice of the user is used to mimic the text-to-speech engine, making the generated voice sound similar to how the patient previously sounded.
+                    Unsupported file formats will not be able to be uploaded.
+                </td>
+                <td>Voice clip is stored and ready for voice cloning.</td>
+            </tr>
+    
+            <tr>
+                <td>UC8</td>
+                <td>Patient/Caregiver</td>
+                <td>Can edit the possible responses by inputting keywords</td>
+                <td>
+                    The user inputs new keywords. The system queries the LLM with an updated prompt and updates response suggestions accordingly. 
+                    If invalid keywords are used, an error message is displayed.
+                </td>
+                <td>Customised responses are saved and available for selection.</td>
+            </tr>
+    
+        </table>
+    </section>    
+    
+    
+
+    <section id="moscow-requirements">
+        <h2>MoSCoW Requirement List</h2>
+    
+        <h3>Phase 1 (Functional Requirements)</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Requirement</th>
+                <th>Priority</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Have working GUI with AI response and textbox to enter keywords or prompt text</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Be able to extract text from PDFs</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Generate a suitable response using an offline LLM</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Use RAG and vector database to search documents</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Chunk texts for easy retrieval and more understandable responses</td>
+                <td>Should</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Add support to choose from files or folders</td>
+                <td>Should</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Save history of previous responses</td>
+                <td>Should</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Add support for Word documents</td>
+                <td>Could</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Add support for Markdown files</td>
+                <td>Could</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Add support for multi-column documents</td>
+                <td>Could</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Allow for Do-Not-Include items</td>
+                <td>Could</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Filters and option to sort</td>
+                <td>Could</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Be able to link to similar online resources/OneDrive for further study</td>
+                <td>Could</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Add support for queries regarding images in documents</td>
+                <td>Could</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>Add build-in helper page</td>
+                <td>Could</td>
+            </tr>
+        </table>
+    
+        <h3>Phase 2 (Functional Requirements)</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Requirement</th>
+                <th>Priority</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Speech To Text working locally in browser</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Text To Speech working locally in browser</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Use offline LLM to generate possible keywords</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Allow users to choose between offline/online models and STT models</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Have suitable expression</td>
+                <td>Should</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>Ensure that the LLM generates a wide array of responses based on mood</td>
+                <td>Should</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>Diarisation to discern between multiple speakers**</td>
+                <td>Could</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>Allow user to upload voice clips for voice cloning in the user’s own voice</td>
+                <td>Could</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>Support real-time speech-to-text using Whisper with finalisation for larger models**</td>
+                <td>Could*</td>
+            </tr>
+        </table>
+    
+        <p><em>* (Not in MoSCoW document but preferred by client as a research feature)</em></p>
+        <p><em>** (More research than feature; client does not expect them in the main branch)</em></p>
+    
+        <h3>Non-Functional Requirements (Both)</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Requirement</th>
+                <th>Priority</th>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>Be easily usable for patients</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Be easily perceivable and maintainable for future development</td>
+                <td>Must</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Have minimal latency or wait times while using the app</td>
+                <td>Should</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Compile Windows exe(phase1)</td>
+                <td>Should</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>Compile MacOS exec(phase1)</td>
+                <td>Could</td>
+            </tr>
+
+        </table>
+    </section>
+    
+    
+
+    
+</body>
+</html>

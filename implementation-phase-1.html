@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Implementation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1></h1>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="requirements.html">Requirements</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="ui-design.html">UI Design</a></li>
+                <li class="dropdown">
+                    <a href="#">System Design</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="system-design-phase-1.html">Phase 1</a></li>
+                        <li><a href="system-design-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">Implementation</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="implementation-phase-1.html">Phase 1</a></li>
+                        <li><a href="implementation-phase-2.html">Phase 2</a></li>
+                    </ul>
+                </li>
+                <li><a href="testing.html">Testing</a></li>
+                <li><a href="evaluation.html">Evaluation</a></li>
+                <li class="dropdown">
+                    <a href="#">Appendices ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="user-manual.html">User and Deployment Manual</a></li>
+                        <li><a href="gdpr.html">GDPR & Privacy</a></li>
+                        <li><a href="https://team2756.wordpress.com/" target="_blank">Development Blog</a></li>
+                        <li><a href="monthly-videos.html">Monthly Videos</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h1>Implementation: Phase 1</h1>
+            <p>
+                This page describes the implementation of key features in the project. The application
+                integrates document processing, a vector database for semantic search, a chat-based user interface,
+                and robust resource management. Each section below explains one of the core features along with code
+                snippets and diagrams where appropriate.
+            </p>
+        </section>
+        <section id="document-processing">
+            <h2>1. Document Processing and Database Connection</h2>
+            <p>
+              Our system supports processing various file formats (PDF, Markdown, Word) by leveraging the
+              following libraries:
+            </p>
+            <ul>
+              <li><strong>langchain_community.document_loaders</strong>: Loads documents in multiple formats.</li>
+              <li><strong>langchain_text_splitters</strong>: Splits documents into manageable chunks.</li>
+              <li><strong>langchain_community.vectorstores.Chroma</strong>: Acts as the vector database for storing document embeddings.</li>
+            </ul>
+            <p>
+              The code (in <code>populate_database.py</code> and <code>embedding.py</code>) performs the following:
+            </p>
+            <ul>
+              <li>Loads a file or directory of files.</li>
+              <li>Splits loaded documents into text chunks with an overlap to maintain context.</li>
+              <li>Calculates unique chunk IDs based on source, page, and chunk index.</li>
+              <li>Adds only new document chunks to the Chroma database, ensuring duplicates are avoided.</li>
+            </ul>
+            <p>The following snippet shows how chunk IDs are calculated:</p>
+            <pre><code>def calculate_chunk_ids(chunks):
+            last_page_id = None
+            current_chunk_index = 0
+            for chunk in chunks:
+                source = chunk.metadata.get("source")
+                page = chunk.metadata.get("page")
+                current_page_id = f"{source}:{page}"
+                if current_page_id == last_page_id:
+                    current_chunk_index += 1
+                else:
+                    current_chunk_index = 0
+                chunk.metadata["id"] = f"{current_page_id}:{current_chunk_index}"
+                last_page_id = current_page_id
+            return chunks
+            </code></pre>
+          </section>
+        
+          <section id="chat-ui">
+            <h2>2. Chat UI and Interaction</h2>
+            <p>
+              The user interface is built with <strong>Tkinter</strong>, Python's standard GUI toolkit. The main
+              file (<code>main.py</code>) is responsible for:
+            </p>
+            <ul>
+              <li>Displaying a chat window where users can interact with the AI assistant.</li>
+              <li>Allowing users to input queries and view conversation history.</li>
+              <li>Providing buttons for actions like loading files, exporting conversations, and clearing the database.</li>
+              <li>Dynamic font size adjustments to enhance readability and accessibility.</li>
+            </ul>
+            <p>
+              The UI uses a grid layout to ensure responsiveness. For example, the chat display area is initialized as follows:
+            </p>
+            <pre><code># Initialize main application window
+        root = tk.Tk()
+        root.title("AI RAG Assistant")
+        root.geometry("800x600")
+        
+        # Chat display area
+        output_box = scrolledtext.ScrolledText(root, wrap=tk.WORD)
+        output_box.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+            </code></pre>
+          </section>
+        
+          <section id="semantic-search">
+            <h2>3. Semantic Search and Response Generation</h2>
+            <p>
+              Our application implements semantic search by integrating a vector database (Chroma) with an
+              embedding function. Key steps include:
+            </p>
+            <ul>
+              <li>
+                <strong>Embedding Generation:</strong> Utilizes a pre-trained model (e.g., <em>multilingual-e5-small</em>)
+                to convert text into high-dimensional vectors.
+              </li>
+              <li>
+                <strong>Similarity Search:</strong> Searches for similar document chunks in the vector database to
+                provide context for user queries.
+              </li>
+              <li>
+                <strong>Content Filtering:</strong> Applies exclusion rules to filter out unwanted content based on
+                user-specified terms.
+              </li>
+              <li>
+                <strong>Response Generation:</strong> Uses a language model (via the <strong>Transformers</strong>
+                library) to generate responses, incorporating the retrieved context.
+              </li>
+            </ul>
+            <p>
+              Below is a code snippet showing how similar documents are retrieved from the database:
+            </p>
+            <pre><code>def retrieve_similar_documents(query, top_k=5):
+            # Create vector database connection
+            db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function())
+            # Retrieve extra documents for filtering
+            results = db.similarity_search(query, k=top_k * 2)
+            
+            # Filter results based on exclusion criteria
+            filtered_results = []
+            for result in results:
+                if all(ex.lower() not in result.page_content.lower() for ex in do_not_include_items):
+                    filtered_results.append(result)
+                    if len(filtered_results) >= top_k:
+                        break
+            return [result.page_content for result in filtered_results[:top_k]]
+            </code></pre>
+          </section>
+        
+          <section id="resource-management">
+            <h2>4. Resource Management and Cleanup</h2>
+            <p>
+              Effective resource management is essential for stability and performance. The implementation ensures:
+            </p>
+            <ul>
+              <li>Proper termination of database connections.</li>
+              <li>Releasing resources allocated to the language model and embedding functions.</li>
+              <li>Clearing GPU or system memory using tools like <code>torch.cuda.empty_cache()</code> or garbage collection.</li>
+            </ul>
+            <p>
+              The following function demonstrates the cleanup process executed when the application is closed:
+            </p>
+            <pre><code>def on_closing():
+            try:
+                # Close the vector database connection
+                db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function())
+                db._client._system.stop()
+                
+                # Release LLM resources
+                global model, tokenizer, generator
+                model = None
+                tokenizer = None
+                generator = None
+        
+                # Clear GPU memory if available
+                if torch.cuda.is_available():
+                    torch.cuda.empty_cache()
+            except Exception as e:
+                print(f"Cleanup error: {e}")
+            root.destroy()
+            </code></pre>
+          </section>
+        
+          <section id="additional-features">
+            <h2>5. Additional Features</h2>
+            <p>
+              Other important features include:
+            </p>
+            <ul>
+              <li>
+                <strong>File and Folder Loading:</strong> Users can index individual files or entire directories.
+                The system supports multiple formats and integrates the loading functionality into the vector database.
+              </li>
+              <li>
+                <strong>Conversation Export:</strong> Allows users to export the chat history to a text file for future reference.
+              </li>
+              <li>
+                <strong>Content Exclusion Management:</strong> Provides an interface for users to add or remove
+                exclusion terms, thus refining search results.
+              </li>
+            </ul>
+            <p>
+              These features enhance the usability of the application by offering a flexible and interactive interface.
+            </p>
+          </section>
+        
+          <section id="conclusion">
+            <h2>Conclusion</h2>
+            <p>
+              Our project integrates various modern tools and libraries to create a robust AI-assisted retrieval system.
+              With document processing, semantic search capabilities, and an interactive chat UI, the system offers a
+              comprehensive solution for managing and querying large sets of documents. The detailed implementation
+              provided here should serve as a useful reference for understanding and extending the system.
+            </p>
+          </section>
+    
+    
+    </main>
+
+    
+
+</body>
+</html>
